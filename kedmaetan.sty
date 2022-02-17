@@ -1,0 +1,114 @@
+% Áelou! Káevarju dúing?  This is my first package ever and if it is
+% beneficial to you, then I am very happy, my frjénding.
+%
+% (c) Anastoásious Koajoatí Doarioán
+%
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{kedmaetan}
+\RequirePackage{dialogue,lettrine,needspace,changepage,ifthen}
+
+\def\red{}
+\@ifpackageloaded{xcolor}{\renewcommand\red{\color{red}}}{}
+\@ifpackageloaded{luacolor}{\renewcommand\red{\color{red}}}{}
+
+\@ifpackageloaded{ekdosis}{
+  \newenvironment{enteqadi}{
+    \setlength\linenumbersep{\maxdimen}\SetLineation{lineation=page,modulo,modulonum=100}
+    \newenvironment{asli}{
+      \begin{edition*}
+      }{\end{edition*}}
+    \newenvironment{digaeri}{
+      \begin{translation}
+      }{\end{translation}}
+    \begin{alignment}
+    }{
+    \end{alignment}
+  }
+  \newcommand\resumeleft{
+    \begin{left}
+    \end{left}
+    \begin{right}
+      \vbox to -\parskip {
+        \farmoan{
+          --- Resume on left page ---
+        }
+      }
+    \end{right}
+  }
+}{}
+
+\@ifpackageloaded{fancyhdr}{
+  \pagestyle{fancy}
+  \fancyhf{}
+  \fancyhead[LE,RO]{\thepage}
+  \renewcommand{\headrule}{
+    \vspace{-2ex}
+    \hbox to\headwidth{
+      \red\leaders\hrule height \headrulewidth\hfill
+    }
+  }
+}{}
+
+\@ifpackageloaded{psaltiki}{
+  \newcommand\mart[1]{\vbox to 0.7\baselineskip{\vfil\hbox to 1em{\hfill\red\Neume #1\hfill}\vfil}}
+}{}
+\newcommand\daestur[1]{{\red\textsc{\MakeLowercase{#1}}}}
+\newcommand\doubare[1][2]{\daestur{(#1x)}}
+\newcommand\faerman[1]{
+  {\setlength\parskip{0em}
+  \linespread{0}
+  \par\vspace{\baselineskip}
+  \centering\daestur{#1}\par
+  }\nopagebreak
+}
+\newcommand\irmos[1]{\footnotesize(Irmos: \emph{#1})}
+\newcommand\automelon[1]{\faerman{\footnotesize(Automelon: \emph{#1})}\vspace{-\baselineskip}\nopagebreak}
+\def\drop #1#2 {
+  \ifcat\noexpand\relax\noexpand#1\def\next{#1{#2}\drop}\else
+  \def\next{\Needspace*{2\baselineskip}\vspace{-\parskip}\lettrine{\red#1}{#2} }\fi
+  \next
+}
+\newcommand\ps{\par\vspace{\parskip}}
+\newenvironment{haemsaefhe}{
+  \noindent\begin{minipage}{\textwidth}
+  }{
+  \end{minipage}
+}
+\newcommand\gotoevenpage{
+  \checkoddpage
+  \ifthenelse{\boolean{oddpage}}{\hfill\newpage}{}
+}
+\newenvironment{goftegu}{
+  \setlength\parskip{0.5em}
+  \def\haerf##1{##1}
+  \renewcommand\haerf[1]{\speak{\red ##1}}
+  \begin{dialogue} }{
+  \end{dialogue}
+}
+\newcounter{versenumber}
+\newenvironment{chantverses}{
+  \setcounter{versenumber}{0}
+  \noindent\begin{minipage}{\textwidth}
+    \def\chantverse##1{##1}
+    \renewcommand\chantverse[1]{
+      \refstepcounter{versenumber}
+      \haerf{\nth{\theversenumber} Verse}\emph{##1}
+    }
+    \begin{goftegu}
+      \setlength\parskip{0em}
+    }{
+    \end{goftegu}
+  \end{minipage}
+}
+\newcommand\haerf[2]{
+  \vspace{0.3\baselineskip}
+  \noindent\hspace{0em}\daestur{#1:}\hspace{0.5em}{\em #2}
+  \nopagebreak
+}
+
+
+% TO DO

@@ -1,0 +1,309 @@
+% Áelou! Káevarju dúing?  This is my first package ever and if it is
+% beneficial to you, then I am very happy, my frjénding.
+%
+% (c) Anastoásious Koajoatí Doarioán
+%
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{psaltiki}
+\RequirePackage{fontspec,stackengine,varwidth}
+
+\def\red{}
+\@ifpackageloaded{xcolor}{\renewcommand\red{\color{red}}}{}
+\@ifpackageloaded{luacolor}{\renewcommand\red{\color{red}}}{}
+
+\newcommand\hxos[3]{
+  {\centering\red
+  \renewcommand\NeumeFontScaleFactor{2.5}\NeumeAutoResize
+  Ήχος
+  {\Neume #1}
+  #2
+  {\Neume #3}
+  \par
+  }\nopagebreak
+}
+\newcommand\NeumeFontScaleFactor{5}
+\newcommand\NeumeAutoResize{
+  \setlength\tmpFontSize{\f@size pt}
+  \setlength\NeumeFontSize{\NeumeFontScaleFactor\tmpFontSize}
+}
+\newfontface\NeumeFont{SERAFIM+}
+\newlength\tmpFontSize
+\newlength\NeumeFontSize
+\NeumeAutoResize
+\newlength\NeumeStackSpace\setlength\NeumeStackSpace{-0.65em}
+\newcommand\Neume{\fontsize{\NeumeFontSize}{\NeumeFontSize}\NeumeFont} 
+\newcommand{\neumestack}[2][]{
+  \renewcommand\stacktype{L}
+  \stackon{\strut#1}{
+    {\Neume\strut#2}
+  }\hspace{\NeumeStackSpace}
+}
+\newcommand{\annotate}[2]{
+  \renewcommand\stacktype{S}
+  \setlength\tmpFontSize{\f@size pt}
+  \stackon{#2}{
+    \fontsize{0.5\tmpFontSize}{0.5\tmpFontSize}\selectfont
+    \begin{varwidth}[t][5ex][t]{\textwidth}
+      \ \\*[-2ex]
+      #1
+    \end{varwidth}
+  }
+}
+\newcommand\byzmacros{
+  \def\daseia{𝀁}
+  \def\perispomeni{𝀂}
+  \def\oxeiaekfonitikon{𝀃}
+  \def\oxeiadipli{𝀄}
+  \def\vareiaekfonitikon{𝀅}
+  \def\vareiadipli{𝀆}
+  \def\kathisti{𝀇}
+  \def\syrmatiki{𝀈}
+  \def\paraklitiki{𝀉}
+  \def\ypokrisis{𝀊}
+  \def\ypokrisisdipli{𝀋}
+  \def\kremasti{𝀌}
+  \def\apesoekfonitikon{𝀍}
+  \def\exoekfonitikon{𝀎}
+  \def\teleia{𝀏}
+  \def\kntaek{𝀐}
+  \def\apostrofos{𝀑}
+  \def\apostrofosdipli{𝀒}
+  \def\synevma{𝀓}
+  \def\thita{𝀔}
+  \def\oligarchaion{𝀕}
+  \def\gorgonarchaion{𝀖}
+  \def\psilon{𝀗}
+  \def\chamilon{𝀘}
+  \def\vathy{𝀙}
+  \def\isarchaion{𝀚}
+  \def\knarchaion{𝀛}
+  \def\kntaekarchaion{𝀜}
+  \def\saximata{𝀝}
+  \def\parichon{𝀞}
+  \def\stavrosapodexia{𝀟}
+  \def\oxeiaarchaion{𝀠}
+  \def\vareiaiarchaion{𝀡}
+  \def\apodermaarchaion{𝀢}
+  \def\apothema{𝀣}
+  \def\klasma{𝀤}
+  \def\revma{𝀥}
+  \def\piasmaarchaion{𝀦}
+  \def\tinagma{𝀧}
+  \def\anatrichisma{𝀨}
+  \def\seisma{𝀩}
+  \def\synagmaarchaion{𝀪}
+  \def\synagmametastavrou{𝀫}
+  \def\oyranismaarchaion{𝀬}
+  \def\thema{𝀭}
+  \def\lemoi{𝀮}
+  \def\dyo{𝀯}
+  \def\tria{𝀰}
+  \def\tessera{𝀱}
+  \def\kratimata{𝀲}
+  \def\apesoexoneo{𝀳}
+  \def\fthoraarchaion{𝀴}
+  \def\imifthora{𝀵}
+  \def\tromikonarchaion{𝀶}
+  \def\katavatromikon{𝀷}
+  \def\pelaston{𝀸}
+  \def\psifistonar{𝀹}
+  \def\kontevma{𝀺}
+  \def\chorevmaarchaion{𝀻}
+  \def\rapisma{𝀼}
+  \def\parakalesmaarchaion{𝀽}
+  \def\paraklitikiarchaion{𝀾}
+  \def\ichadin{𝀿}
+  \def\nana{𝁀}
+  \def\petasma{𝁁}
+  \def\kontevmaallo{𝁂}
+  \def\tromikonallo{𝁃}
+  \def\straggismata{𝁄}
+  \def\gronthismata{𝁅}
+  \def\is{𝁆}
+  \def\olig{𝁇}
+  \def\oksia{𝁈}
+  \def\pet{𝁉}
+  \def\koufisma{𝁊}
+  \def\petastokoufisma{𝁋}
+  \def\kratimokoufisma{𝁌}
+  \def\pelastonneo{𝁍}
+  \def\ypsiliaristera{𝁎}
+  \def\ypsilimeso{𝁏}
+  \def\ypsili{𝁐}
+  \def\apo{𝁑}
+  \def\apostrofoisyndesmosneo{𝁒}
+  \def\yp{𝁓}
+  \def\kratimoyporroon{𝁔}
+  \def\el{𝁕}
+  \def\xa{𝁖}
+  \def\mikronis{𝁗}
+  \def\var{𝁘}
+  \def\piasmaneo{𝁙}
+  \def\psifiston{𝁚}
+  \def\omalon{𝁛}
+  \def\antikenoma{𝁜}
+  \def\lygisma{𝁝}
+  \def\paraklitikineo{𝁞}
+  \def\parakalesmaneo{𝁟}
+  \def\eteron{𝁠}
+  \def\kylisma{𝁡}
+  \def\antikenokylisma{𝁢}
+  \def\tromikonneo{𝁣}
+  \def\ekstrepton{𝁤}
+  \def\synagmaneo{𝁥}
+  \def\syrma{𝁦}
+  \def\chorevmaneo{𝁧}
+  \def\epegerma{𝁨}
+  \def\seismaneo{𝁩}
+  \def\xironklasma{𝁪}
+  \def\tromikopsifiston{𝁫}
+  \def\psifistolygisma{𝁬}
+  \def\tromikolygisma{𝁭}
+  \def\tromikoparakalesma{𝁮}
+  \def\psifistoparakalesma{𝁯}
+  \def\tromikosynagma{𝁰}
+  \def\psifistosynagma{𝁱}
+  \def\gorgosyntheton{𝁲}
+  \def\argosyntheton{𝁳}
+  \def\eteronargosyntheton{𝁴}
+  \def\oyranismaneo{𝁵}
+  \def\thematismaseso{𝁶}
+  \def\thematismosexo{𝁷}
+  \def\themaaploun{𝁸}
+  \def\theskaiapothes{𝁹}
+  \def\katavasma{𝁺}
+  \def\endofonon{𝁻}
+  \def\yfenkato{𝁼}
+  \def\yfenano{𝁽}
+  \def\stavros{𝁾}
+  \def\klasmaano{𝁿}
+  \def\dipliar{𝂀}
+  \def\kratimaarchaion{𝂁}
+  \def\kratimaallo{𝂂}
+  \def\kratimaneo{𝂃}
+  \def\apodermaneo{𝂄}
+  \def\apli{𝂅}
+  \def\dipli{𝂆}
+  \def\tripli{𝂇}
+  \def\tetrapli{𝂈}
+  \def\koronisbyz{𝂉}
+  \def\leimmaenoschronou{𝂊}
+  \def\leimmadyochronon{𝂋}
+  \def\leimmatrionchronon{𝂌}
+  \def\leimmatessaronchronon{𝂍}
+  \def\leimmaimiseoschronou{𝂎}
+  \def\gorgon{𝂏}
+  \def\gorgonparestigmenonaristera{𝂐}
+  \def\gorgonparestigmenondexia{𝂑}
+  \def\digorgon{𝂒}
+  \def\digorgparestigmaristerkato{𝂓}
+  \def\digorgparestigmaristerano{𝂔}
+  \def\digorgonparestigmenondexia{𝂕}
+  \def\trigorgon{𝂖}
+  \def\argon{𝂗}
+  \def\imidiargon{𝂘}
+  \def\diargon{𝂙}
+  \def\agogipoliargi{𝂚}
+  \def\agogiargoteri{𝂛}
+  \def\agogiargi{𝂜}
+  \def\agogimetria{𝂝}
+  \def\anooksia{𝂞}
+  \def\agogigorgi{𝂟}
+  \def\agogigorgoteri{𝂠}
+  \def\agogipoligorgi{𝂡}
+  \def\mpa{𝂢}
+  \def\mp{𝂣}
+  \def\mda{𝂤}
+  \def\mdb{𝂥}
+  \def\mt{𝂦}
+  \def\mtri{𝂧}
+  \def\mtet{𝂨}
+  \def\mleg{𝂩}
+  \def\mlegetos{𝂪}
+  \def\mpl{𝂫}
+  \def\isakiatelousichimatos{𝂬}
+  \def\mapos{𝂭}
+  \def\fanerosistetrafonias{𝂮}
+  \def\fanerosismonofonias{𝂯}
+  \def\fanerosisdifonias{𝂰}
+  \def\mvar{𝂱}
+  \def\mprotovarys{𝂲}
+  \def\mpltet{𝂳}
+  \def\moda{𝂴}
+  \def\modb{𝂵}
+  \def\fB{𝂶}
+  \def\imifonon{𝂷}
+  \def\imifthoron{𝂸}
+  \def\fda{𝂹}
+  \def\fp{𝂺}
+  \def\fg{𝂻}
+  \def\naos{𝂼}
+  \def\fd{𝂽}
+  \def\ms{𝂾}
+  \def\fk{𝂿}
+  \def\fz{𝃀}
+  \def\fn{𝃁}
+  \def\fna{𝃂}
+  \def\fm{𝃃}
+  \def\mm{𝃄}
+  \def\fs{𝃅}
+  \def\fmk{𝃆}
+  \def\fnenano{𝃇}
+  \def\chroazygos{𝃈}
+  \def\chroakliton{𝃉}
+  \def\chroaspathi{𝃊}
+  \def\fen{𝃋}
+  \def\fthoraenarmoniosantifonia{𝃌}
+  \def\omalonapo{𝃍}
+  \def\omalonol{𝃎}
+  \def\omalonkn{𝃏}
+  \def\d{𝃐}
+  \def\dd{𝃑}
+  \def\ddd{𝃒}
+  \def\dddd{𝃓}
+  \def\y{𝃔}
+  \def\yy{𝃕}
+  \def\yyy{𝃖}
+  \def\yyyy{𝃗}
+  \def\genikidiesis{𝃘}
+  \def\genikiyfesis{𝃙}
+  \def\diastolimikri{𝃚}
+  \def\diastoli{𝃛}
+  \def\diastolidipli{𝃜}
+  \def\diastolitheseos{𝃝}
+  \def\ism{𝃞}
+  \def\isd{𝃟}
+  \def\isk{𝃠}
+  \def\isz{𝃡}
+  \def\isn{𝃢}
+  \def\isp{𝃣}
+  \def\isB{𝃤}
+  \def\isG{𝃥}
+  \def\isD{𝃦}
+  \def\isK{𝃧}
+  \def\isZ{𝃨}
+  \def\apa{𝃩}
+  \def\avu{𝃪}
+  \def\aga{𝃫}
+  \def\adi{𝃬}
+  \def\ake{𝃭}
+  \def\azo{𝃮}
+  \def\ani{𝃯}
+  \def\knta{𝃰}
+  \def\kn{𝃱}
+  \def\kntakato{𝃲}
+  \def\knkato{𝃳}
+  \def\klasmakato{𝃴}
+  \def\gorgonkato{𝃵}
+  \def\zwj{‍}
+  \def\wj{⁠}
+  \def\zwsp{​}
+  }
+
+  \endinput
+  %%
+  %% End of file `psaltiki.sty'
