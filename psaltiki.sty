@@ -15,13 +15,13 @@
 \@ifpackageloaded{xcolor}{\renewcommand\red{\color{red}}}{}
 \@ifpackageloaded{luacolor}{\renewcommand\red{\color{red}}}{}
 
-\newcommand\hxos[3]{
+\newcommand\hxos[4][Ἧχος]{
   {\centering\red
   \renewcommand\NeumeFontScaleFactor{2.5}\NeumeAutoResize
-  Ήχος
-  {\Neume #1}
-  #2
-  {\Neume #3}
+  #1
+  {\neume #2}
+  #3
+  {\neume #4}
   \par
   }\nopagebreak
 }
@@ -35,11 +35,10 @@
 \newlength\NeumeFontSize
 \NeumeAutoResize
 \newlength\NeumeStackSpace\setlength\NeumeStackSpace{-0.65em}
-\newcommand\Neume{\fontsize{\NeumeFontSize}{\NeumeFontSize}\NeumeFont} 
 \newcommand{\neumestack}[2][]{
   \renewcommand\stacktype{L}
   \stackon{\strut#1}{
-    {\Neume\strut#2}
+    {\neume\strut#2}
   }\hspace{\NeumeStackSpace}
 }
 \newcommand{\annotate}[2]{
@@ -53,7 +52,9 @@
     \end{varwidth}
   }
 }
-\newcommand\byzmacros{
+\newenvironment{troparion}{}{}
+\newenvironment{neume}{
+  \fontsize{\NeumeFontSize}{\NeumeFontSize}\NeumeFont
   \def\daseia{𝀁}
   \def\perispomeni{𝀂}
   \def\oxeiaekfonitikon{𝀃}
@@ -235,7 +236,7 @@
   \def\mpltet{𝂳}
   \def\moda{𝂴}
   \def\modb{𝂵}
-  \def\fB{𝂶}
+  \def\fb{𝂶}
   \def\imifonon{𝂷}
   \def\imifthoron{𝂸}
   \def\fda{𝂹}
