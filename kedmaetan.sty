@@ -56,20 +56,20 @@
 \newcommand\taemam[1]{{\setlength\parindent{0.5\parindent}\ \\\indent\indent\daestur{#1}\indent}}
 \newcommand\doubare[1][2]{\daestur{(#1x)}}
 \newcommand\faerman[1]{
+  \Needspace*{3\baselineskip}
   {\setlength\parskip{0em}
   \linespread{0}
   \par\vspace{\baselineskip}
   \centering\daestur{#1}\par
-  }\nopagebreak
+  }\vspace{-\parskip}\nopagebreak
 }
 \newcommand\irmos[1]{\footnotesize(Irmos: \emph{#1})}
 \newcommand\automelon[1]{\faerman{\footnotesize(Automelon: \emph{#1})}\vspace{-\baselineskip}\nopagebreak}
 \def\drop #1#2 {
   \ifcat\noexpand\relax\noexpand#1\def\next{#1{#2}\drop}\else
-  \def\next{\Needspace*{2\baselineskip}\vspace{-\parskip}\lettrine{\red#1}{#2} }\fi
+  \def\next{\Needspace*{3\baselineskip}\lettrine{\red#1}{#2} }\fi
   \next
 }
-\newcommand\ps{\par\vspace{\parskip}}
 \newenvironment{haemsaefhe}{
   \noindent\begin{minipage}{\textwidth}
   }{
@@ -103,6 +103,7 @@
 }
 \newcommand\haerf[2]{
   \vspace{0.3\baselineskip}
-  \noindent\hspace{0em}\daestur{#1:}\hspace{0.5em}{\em #2}
+  \Needspace*{4\baselineskip}
+  \noindent\hspace{0em}\daestur{#1:}\hspace{0.5em}{\em #2}\vspace{-\parskip}
   \nopagebreak
 }
