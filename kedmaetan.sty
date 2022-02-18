@@ -18,26 +18,22 @@
 \@ifpackageloaded{ekdosis}{
   \newenvironment{enteqadi}{
     \setlength\linenumbersep{\maxdimen}\SetLineation{lineation=page,modulo,modulonum=100}
-    \newenvironment{asli}{
-      \begin{edition*}
-      }{\end{edition*}}
-    \newenvironment{digaeri}{
-      \begin{translation}
-      }{\end{translation}}
+    \newenvironment{aesli}{\begin{edition*}}{\end{edition*}}
+    \newenvironment{digaeri}{\begin{translation}}{\end{translation}}
     \begin{alignment}
     }{
     \end{alignment}
   }
-  \newcommand\resumeleft{
-    \begin{left}
-    \end{left}
-    \begin{right}
+  \newcommand\resumeasli{
+    \begin{aesli}
+    \end{aesli}
+    \begin{digaeri}
       \vbox to -\parskip {
-        \farmoan{
+        \faerman{
           --- Resume on left page ---
         }
       }
-    \end{right}
+    \end{digaeri}
   }
 }{}
 
