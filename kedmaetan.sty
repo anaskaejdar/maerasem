@@ -7,9 +7,9 @@
 \ProvidesPackage{kedmaetan}
 \RequirePackage{dialogue,lettrine,needspace,changepage,ifthen}
 
-\def\red{}
-\@ifpackageloaded{xcolor}{\renewcommand\red{\color{red}}}{}
-\@ifpackageloaded{luacolor}{\renewcommand\red{\color{red}}}{}
+\@ifpackageloaded{xcolor}{\providecommand\ruh{\color{red}}}{}
+\@ifpackageloaded{luacolor}{\providecommand\ruh{\color{red}}}{}
+\providecommand\ruh{}
 
 \@ifpackageloaded{ekdosis}{
   \newenvironment{enteqadi}{
@@ -40,16 +40,16 @@
   \renewcommand{\headrule}{
     \vspace{-2ex}
     \hbox to\headwidth{
-      \red\leaders\hrule height \headrulewidth\hfill
+      \ruh\leaders\hrule height \headrulewidth\hfill
     }
   }
 }{}
 
 \@ifpackageloaded{psaltiki}{
-  \newcommand\mart[1]{\vbox to 0.7\baselineskip{\vfil\hbox to 1em{\hfill\red\neume #1\hfill}\vfil}}
+  \newcommand\mart[1]{\vbox to 0.7\baselineskip{\vfil\hbox to 1em{\hfill\ruh\neume #1\hfill}\vfil}}
 }{}
-\newcommand\daestur[1]{{\red\textsc{\MakeLowercase{#1}}}}
-\newcommand\taemam[1]{{\setlength\parindent{0.5\parindent}\ \\\indent\indent\daestur{#1}\indent}}
+\newcommand\daestur[1]{{\ruh\textsc{\MakeLowercase{#1}}}}
+\newcommand\taemam[1]{{\setlength\parindent{0.5\parindent}\ \\\indent\indent\daestur{ #1: }\indent}}
 \newcommand\doubare[1][2]{\daestur{(#1x)}}
 \newcommand\faerman[1]{
   \Needspace*{3\baselineskip}
@@ -63,7 +63,7 @@
 \newcommand\automelon[1]{\footnotesize(Automelon: \emph{#1})}
 \def\drop #1#2 {
   \ifcat\noexpand\relax\noexpand#1\def\next{#1{#2}\drop}\else
-  \def\next{\Needspace*{3\baselineskip}\lettrine{\red#1}{#2} }\fi
+  \def\next{\Needspace*{3\baselineskip}\lettrine{\ruh#1}{#2} }\fi
   \next
 }
 \newenvironment{haemsaefhe}{
@@ -78,7 +78,7 @@
 \newenvironment{goftegu}{
   \setlength\parskip{0.5em}
   \def\haerf##1{##1}
-  \renewcommand\haerf[1]{\speak{\red ##1}}
+  \renewcommand\haerf[1]{\speak{\ruh ##1}}
   \begin{dialogue} }{
   \end{dialogue}
 }

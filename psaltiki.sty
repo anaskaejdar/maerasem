@@ -7,12 +7,17 @@
 \ProvidesPackage{psaltiki}
 \RequirePackage{fontspec,stackengine,varwidth}
 
-\def\red{}
-\@ifpackageloaded{xcolor}{\renewcommand\red{\color{red}}}{}
-\@ifpackageloaded{luacolor}{\renewcommand\red{\color{red}}}{}
+\@ifpackageloaded{xcolor}{\providecommand\ruh{\color{red}}}{}
+\@ifpackageloaded{luacolor}{\providecommand\ruh{\color{red}}}{}
+\providecommand\ruh{}
 
+\newcommand\needspacecommandwrapper[1]{}
+\@ifpackageloaded{needspace}{
+  \renewcommand\needspacecommandwrapper[1]{\Needspace*{#1}}
+}{}
 \newcommand\hxos[4][Ἧχος]{
-  {\centering\red
+  \needspacecommandwrapper{6\baselineskip}
+  {\centering\ruh
   \renewcommand\NeumeFontScaleFactor{2.5}\NeumeAutoResize
   #1
   {\neume #2}
@@ -44,7 +49,7 @@
     \fontsize{0.5\tmpFontSize}{0.5\tmpFontSize}\selectfont
     \begin{varwidth}[t][5ex][t]{\textwidth}
       \ \\*[-2ex]
-      #1
+      \ruh #1
     \end{varwidth}
   }
 }
