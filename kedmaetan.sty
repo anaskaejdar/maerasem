@@ -14,22 +14,22 @@
 \@ifpackageloaded{ekdosis}{
   \newenvironment{enteqadi}{
     \setlength\linenumbersep{\maxdimen}\SetLineation{lineation=page,modulo,modulonum=100}
-    \newenvironment{aesli}{\begin{edition*}}{\end{edition*}}
-    \newenvironment{digaeri}{\begin{translation}}{\end{translation}}
+    \newenvironment{leftside}{\begin{edition*}}{\end{edition*}}
+    \newenvironment{rightside}{\begin{translation}}{\end{translation}}
     \begin{alignment}
     }{
     \end{alignment}
   }
-  \newcommand\resumeasli{
-    \begin{aesli}
-    \end{aesli}
-    \begin{digaeri}
+  \newcommand\resumeleftside{
+    \begin{leftside}
+    \end{leftside}
+    \begin{rightside}
       \vbox to -\parskip {
         \faerman{
-          --- Resume on left page ---
+          --- Resume on the left page ---
         }
       }
-    \end{digaeri}
+    \end{rightside}
   }
 }{}
 
