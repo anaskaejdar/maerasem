@@ -35,13 +35,15 @@
 \newlength\tmpFontSize
 \newlength\NeumeFontSize
 \NeumeAutoResize
-\newlength\NeumeStackSpace\setlength\NeumeStackSpace{-1em}
+\newlength\NeumeLAlignment\setlength\NeumeLAlignment{-1.0em}
+\newlength\NeumeRAlignment\setlength\NeumeRAlignment{-0.2em}
+\newlength\NeumeStackAlignment\setlength\NeumeStackAlignment{-0.2em}
 \newcommand{\neumestack}[2][]{
   \renewcommand\stackalignment{c}
   \renewcommand\stacktype{L}
   \stackon{\strut#1}{
-    {\neume\strut#2}
-  }\hspace{\NeumeStackSpace}
+    {\neume\strut\hspace{\NeumeLAlignment}#2\hspace{\NeumeRAlignment}}
+  }\hspace{\NeumeStackAlignment}
 }
 \newcommand{\annotate}[2]{
   \renewcommand\stacktype{S}
