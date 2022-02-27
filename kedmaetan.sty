@@ -5,7 +5,7 @@
 %
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{kedmaetan}
-\RequirePackage{dialogue,lettrine,needspace,changepage,ifthen}
+\RequirePackage{setspace,dialogue,lettrine,needspace,changepage,ifthen}
 
 \@ifpackageloaded{xcolor}{\providecommand\ruh{\color{red}}}{}
 \@ifpackageloaded{luacolor}{\providecommand\ruh{\color{red}}}{}
@@ -51,14 +51,12 @@
 \newcommand\daestur[1]{{\ruh\textsc{\MakeLowercase{#1}}}}
 \newcommand\taemam[1]{{\setlength\parindent{0.5\parindent}\ \\\indent\indent\daestur{ #1: }\indent}}
 \newcommand\doubare[1][2]{\daestur{(#1x)}}
-\newcommand\faerman[1]{
+\newcommand\faerman[1]{{
   \Needspace*{5\baselineskip}
-  {\setlength\parskip{0em}
-  \linespread{0}
-  \par\vspace{\baselineskip}
-  \centering\daestur{#1}\par
-  }\vspace{-\parskip}\nopagebreak
-}
+  \setstretch{0.5}\vspace{-0.5\parskip}
+  \begin{center}\daestur{#1}\end{center}
+  \vspace{-2\parskip}
+}}
 \newcommand\irmos[1]{\footnotesize(Irmos: \emph{#1})}
 \newcommand\automelon[1]{\footnotesize(Automelon: \emph{#1})}
 \def\drop #1#2 {
