@@ -5,7 +5,7 @@
 %
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{psaltiki}
-\RequirePackage{fontspec,stackengine,varwidth}
+\RequirePackage{fontspec,stackengine,varwidth,luacode,luatexbase}
 
 \@ifpackageloaded{xcolor}{\providecommand\ruh{\color{red}}}{}
 \@ifpackageloaded{luacolor}{\providecommand\ruh{\color{red}}}{}
@@ -309,16 +309,110 @@
   \byzmacros
 }{}
 
-\ExplSyntaxOn
-\tl_new:N \l__blackened_test_tl
-\@ifpackageloaded{luacolor}
-{
-  \NewDocumentEnvironment{NeumeColor}{+b}
-  {
-    \tl_set:Nn \l__blackened_test_tl { #1 }
-    % TODO
-      \regex_replace_all:nnN{NEUMESYMBOL}{\c{NEUMENAME}}\l__blackened_test_tl
-    \tl_use:N \l__blackened_test_tl
-  }{}
-  \ExplSyntaxOff
-}{\newenvironment{NeumeColor}{}{}}
+%% Lua-side code
+\begin{luacode}
+function sometexttocommand ( line )
+    line = string.gsub ( line , "𝂏", "\\gorgon" )
+    line = string.gsub ( line , "𝂐", "\\gorgonparestigmenonaristera" )
+    line = string.gsub ( line , "𝂑", "\\gorgonparestigmenondexia" )
+    line = string.gsub ( line , "𝂒", "\\digorgon" )
+    line = string.gsub ( line , "𝂓", "\\digorgparestigmaristerkato" )
+    line = string.gsub ( line , "𝂔", "\\digorgparestigmaristerano" )
+    line = string.gsub ( line , "𝂕", "\\digorgonparestigmenondexia" )
+    line = string.gsub ( line , "𝂖", "\\trigorgon" )
+    line = string.gsub ( line , "𝂗", "\\argon" )
+    line = string.gsub ( line , "𝂘", "\\imidiargon" )
+    line = string.gsub ( line , "𝂙", "\\diargon" )
+    line = string.gsub ( line , "𝂚", "\\agogipoliargi" )
+    line = string.gsub ( line , "𝂛", "\\agogiargoteri" )
+    line = string.gsub ( line , "𝂜", "\\agogiargi" )
+    line = string.gsub ( line , "𝂝", "\\agogimetria" )
+    line = string.gsub ( line , "𝂞", "\\anooksia" )
+    line = string.gsub ( line , "𝂟", "\\agogigorgi" )
+    line = string.gsub ( line , "𝂠", "\\agogigorgoteri" )
+    line = string.gsub ( line , "𝂡", "\\agogipoligorgi" )
+    line = string.gsub ( line , "𝂢", "\\mpa" )
+    line = string.gsub ( line , "𝂣", "\\mp" )
+    line = string.gsub ( line , "𝂤", "\\mda" )
+    line = string.gsub ( line , "𝂥", "\\mdb" )
+    line = string.gsub ( line , "𝂦", "\\mt" )
+    line = string.gsub ( line , "𝂧", "\\mtri" )
+    line = string.gsub ( line , "𝂨", "\\mtet" )
+    line = string.gsub ( line , "𝂩", "\\mleg" )
+    line = string.gsub ( line , "𝂪", "\\mlegetos" )
+    line = string.gsub ( line , "𝂫", "\\mpl" )
+    line = string.gsub ( line , "𝂬", "\\istelichi" )
+    line = string.gsub ( line , "𝂭", "\\mapos" )
+    line = string.gsub ( line , "𝂮", "\\fantetra" )
+    line = string.gsub ( line , "𝂯", "\\fanmono" )
+    line = string.gsub ( line , "𝂰", "\\fandifon" )
+    line = string.gsub ( line , "𝂱", "\\mvar" )
+    line = string.gsub ( line , "𝂲", "\\mprotovarys" )
+    line = string.gsub ( line , "𝂳", "\\mpltet" )
+    line = string.gsub ( line , "𝂶", "\\fb" )
+    line = string.gsub ( line , "𝂷", "\\imifonon" )
+    line = string.gsub ( line , "𝂸", "\\imifthoron" )
+    line = string.gsub ( line , "𝂹", "\\fda" )
+    line = string.gsub ( line , "𝂺", "\\fp" )
+    line = string.gsub ( line , "𝂻", "\\fg" )
+    line = string.gsub ( line , "𝂼", "\\naos" )
+    line = string.gsub ( line , "𝂽", "\\fd" )
+    line = string.gsub ( line , "𝂾", "\\ms" )
+    line = string.gsub ( line , "𝂿", "\\fk" )
+    line = string.gsub ( line , "𝃀", "\\fz" )
+    line = string.gsub ( line , "𝃁", "\\fn" )
+    line = string.gsub ( line , "𝃂", "\\fna" )
+    line = string.gsub ( line , "𝃃", "\\fm" )
+    line = string.gsub ( line , "𝃄", "\\mm" )
+    line = string.gsub ( line , "𝃅", "\\fs" )
+    line = string.gsub ( line , "𝃆", "\\fmk" )
+    line = string.gsub ( line , "𝃇", "\\fnenano" )
+    line = string.gsub ( line , "𝃈", "\\chrzygos" )
+    line = string.gsub ( line , "𝃉", "\\chrkliton" )
+    line = string.gsub ( line , "𝃊", "\\chrspathi" )
+    line = string.gsub ( line , "𝃋", "\\fen" )
+    line = string.gsub ( line , "𝃌", "\\fenantifonia" )
+    line = string.gsub ( line , "𝃐", "\\d" )
+    line = string.gsub ( line , "𝃑", "\\dd" )
+    line = string.gsub ( line , "𝃒", "\\ddd" )
+    line = string.gsub ( line , "𝃓", "\\dddd" )
+    line = string.gsub ( line , "𝃔", "\\y" )
+    line = string.gsub ( line , "𝃕", "\\yy" )
+    line = string.gsub ( line , "𝃖", "\\yyy" )
+    line = string.gsub ( line , "𝃗", "\\yyyy" )
+    line = string.gsub ( line , "𝃘", "\\genikidiesis" )
+    line = string.gsub ( line , "𝃙", "\\genikiyfesis" )
+    line = string.gsub ( line , "𝃚", "\\diastolimikri" )
+    line = string.gsub ( line , "𝃛", "\\diastoli" )
+    line = string.gsub ( line , "𝃜", "\\diastolidipli" )
+    line = string.gsub ( line , "𝃝", "\\diastolitheseos" )
+    line = string.gsub ( line , "𝃞", "\\ism" )
+    line = string.gsub ( line , "𝃟", "\\isd" )
+    line = string.gsub ( line , "𝃠", "\\isk" )
+    line = string.gsub ( line , "𝃡", "\\isz" )
+    line = string.gsub ( line , "𝃢", "\\isn" )
+    line = string.gsub ( line , "𝃣", "\\isp" )
+    line = string.gsub ( line , "𝃤", "\\isB" )
+    line = string.gsub ( line , "𝃥", "\\isG" )
+    line = string.gsub ( line , "𝃦", "\\isD" )
+    line = string.gsub ( line , "𝃧", "\\isK" )
+    line = string.gsub ( line , "𝃨", "\\isZ" )
+    line = string.gsub ( line , "𝃩", "\\apa" )
+    line = string.gsub ( line , "𝃪", "\\avu" )
+    line = string.gsub ( line , "𝃫", "\\aga" )
+    line = string.gsub ( line , "𝃬", "\\adi" )
+    line = string.gsub ( line , "𝃭", "\\ake" )
+    line = string.gsub ( line , "𝃮", "\\azo" )
+    line = string.gsub ( line , "𝃯", "\\ani" )
+    return ( line )
+end
+\end{luacode}
+
+%% TeX-side code
+\newenvironment{NeumeParseUnicode}{%
+   \directlua{luatexbase.add_to_callback(
+              "process_input_buffer",
+              sometexttocommand, "sometexttocommand")}}{%
+   \directlua{luatexbase.remove_from_callback(
+              "process_input_buffer",
+              "sometexttocommand")}}
