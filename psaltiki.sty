@@ -35,8 +35,9 @@
 \newlength\tmpFontSize
 \newlength\NeumeFontSize
 \NeumeAutoResize
-\newlength\NeumeStackSpace\setlength\NeumeStackSpace{-0.65em}
+\newlength\NeumeStackSpace\setlength\NeumeStackSpace{-1em}
 \newcommand{\neumestack}[2][]{
+  \renewcommand\stackalignment{c}
   \renewcommand\stacktype{L}
   \stackon{\strut#1}{
     {\neume\strut#2}
