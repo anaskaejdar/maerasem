@@ -8,8 +8,8 @@
 \RequirePackage{fontspec,stackengine,varwidth,luacode,luatexbase}
 
 \@ifpackageloaded{xcolor}{\providecommand\ruh{\color{red}}}{}
-\@ifpackageloaded{luacolor}{\providecommand\ruh{\color{red}}}{}
-\providecommand\ruh{}
+\@ifpackageloaded{luacolor}{\providecommand\ruh{\color{red}}\providecommand\nruh{\ruh}}{}
+\providecommand\ruh{}\providecommand\nruh{}
 
 \newcommand\needspacecommandwrapper[1]{}
 \@ifpackageloaded{needspace}{
@@ -196,103 +196,103 @@
   \def\leimmatrionchronon{𝂌}
   \def\leimmatessaronchronon{𝂍}
   \def\leimmaimiseoschronou{𝂎}
-  \def\gorgon{{\ruh 𝂏}}
-  \def\gorgonparestigmenonaristera{{\ruh𝂐}}
-  \def\gorgonparestigmenondexia{{\ruh𝂑}}
-  \def\digorgon{{\ruh 𝂒}}
-  \def\digorgparestigmaristerkato{{\ruh𝂓}}
-  \def\digorgparestigmaristerano{{\ruh𝂔}}
-  \def\digorgonparestigmenondexia{{\ruh𝂕}}
-  \def\trigorgon{{\ruh 𝂖}}
-  \def\argon{{\ruh𝂗}}
-  \def\imidiargon{{\ruh𝂘}}
-  \def\diargon{{\ruh𝂙}}
-  \def\agogipoliargi{{\ruh𝂚}}
-  \def\agogiargoteri{{\ruh𝂛}}
-  \def\agogiargi{{\ruh𝂜}}
-  \def\agogimetria{{\ruh𝂝}}
-  \def\anooksia{{\ruh𝂞}}
-  \def\agogigorgi{{\ruh𝂟}}
-  \def\agogigorgoteri{{\ruh𝂠}}
-  \def\agogipoligorgi{{\ruh𝂡}}
-  \def\mpa{{\ruh 𝂢}}
-  \def\mp{{\ruh 𝂣}}
-  \def\mda{{\ruh 𝂤}}
-  \def\mdb{{\ruh 𝂥}}
-  \def\mt{{\ruh 𝂦}}
-  \def\mtri{{\ruh 𝂧}}
-  \def\mtet{{\ruh 𝂨}}
-  \def\mleg{{\ruh 𝂩}}
-  \def\mlegetos{{\ruh 𝂪}}
-  \def\mpl{{\ruh 𝂫}}
-  \def\istelichi{{\ruh 𝂬}}
-  \def\mapos{{\ruh 𝂭}}
-  \def\fantetra{{\ruh 𝂮}}
-  \def\fanmono{{\ruh 𝂯\hspace{0.2em}}}
-  \def\fandifon{{\ruh 𝂰}}
-  \def\mvar{{\ruh 𝂱}}
-  \def\mprotovarys{{\ruh 𝂲}}
-  \def\mpltet{{\ruh 𝂳}}
+  \def\gorgon{{\nruh 𝂏}}
+  \def\gorgonparestigmenonaristera{{\nruh𝂐}}
+  \def\gorgonparestigmenondexia{{\nruh𝂑}}
+  \def\digorgon{{\nruh 𝂒}}
+  \def\digorgparestigmaristerkato{{\nruh𝂓}}
+  \def\digorgparestigmaristerano{{\nruh𝂔}}
+  \def\digorgonparestigmenondexia{{\nruh𝂕}}
+  \def\trigorgon{{\nruh 𝂖}}
+  \def\argon{{\nruh𝂗}}
+  \def\imidiargon{{\nruh𝂘}}
+  \def\diargon{{\nruh𝂙}}
+  \def\agogipoliargi{{\nruh𝂚}}
+  \def\agogiargoteri{{\nruh𝂛}}
+  \def\agogiargi{{\nruh𝂜}}
+  \def\agogimetria{{\nruh𝂝}}
+  \def\anooksia{{\nruh𝂞}}
+  \def\agogigorgi{{\nruh𝂟}}
+  \def\agogigorgoteri{{\nruh𝂠}}
+  \def\agogipoligorgi{{\nruh𝂡}}
+  \def\mpa{{\nruh 𝂢}}
+  \def\mp{{\nruh 𝂣}}
+  \def\mda{{\nruh 𝂤}}
+  \def\mdb{{\nruh 𝂥}}
+  \def\mt{{\nruh 𝂦}}
+  \def\mtri{{\nruh 𝂧}}
+  \def\mtet{{\nruh 𝂨}}
+  \def\mleg{{\nruh 𝂩}}
+  \def\mlegetos{{\nruh 𝂪}}
+  \def\mpl{{\nruh 𝂫}}
+  \def\istelichi{{\nruh 𝂬}}
+  \def\mapos{{\nruh 𝂭}}
+  \def\fantetra{{\nruh 𝂮}}
+  \def\fanmono{{\nruh 𝂯\hspace{0.2em}}}
+  \def\fandifon{{\nruh 𝂰}}
+  \def\mvar{{\nruh 𝂱}}
+  \def\mprotovarys{{\nruh 𝂲}}
+  \def\mpltet{{\nruh 𝂳}}
   \def\moda{𝂴}
   \def\modb{𝂵}
-  \def\fb{{\ruh 𝂶}}
-  \def\imifonon{{\ruh 𝂷}}
-  \def\imifthoron{{\ruh 𝂸}}
-  \def\fda{{\ruh 𝂹}}
-  \def\fp{{\ruh 𝂺}}
-  \def\fg{{\ruh 𝂻}}
-  \def\naos{{\ruh 𝂼}}
-  \def\fd{{\ruh 𝂽}}
-  \def\ms{{\ruh 𝂾}}
-  \def\fk{{\ruh 𝂿}}
-  \def\fz{{\ruh 𝃀}}
-  \def\fn{{\ruh 𝃁}}
-  \def\fna{{\ruh 𝃂}}
-  \def\fm{{\ruh 𝃃}}
-  \def\mm{{\ruh 𝃄}}
-  \def\fs{{\ruh 𝃅}}
-  \def\fmk{{\ruh 𝃆}}
-  \def\fnenano{{\ruh 𝃇}}
-  \def\chrzygos{{\ruh 𝃈}}
-  \def\chrkliton{{\ruh 𝃉}}
-  \def\chrspathi{{\ruh 𝃊}}
-  \def\fen{{\ruh 𝃋}}
-  \def\fenantifonia{{\ruh 𝃌}}
+  \def\fb{{\nruh 𝂶}}
+  \def\imifonon{{\nruh 𝂷}}
+  \def\imifthoron{{\nruh 𝂸}}
+  \def\fda{{\nruh 𝂹}}
+  \def\fp{{\nruh 𝂺}}
+  \def\fg{{\nruh 𝂻}}
+  \def\naos{{\nruh 𝂼}}
+  \def\fd{{\nruh 𝂽}}
+  \def\ms{{\nruh 𝂾}}
+  \def\fk{{\nruh 𝂿}}
+  \def\fz{{\nruh 𝃀}}
+  \def\fn{{\nruh 𝃁}}
+  \def\fna{{\nruh 𝃂}}
+  \def\fm{{\nruh 𝃃}}
+  \def\mm{{\nruh 𝃄}}
+  \def\fs{{\nruh 𝃅}}
+  \def\fmk{{\nruh 𝃆}}
+  \def\fnenano{{\nruh 𝃇}}
+  \def\chrzygos{{\nruh 𝃈}}
+  \def\chrkliton{{\nruh 𝃉}}
+  \def\chrspathi{{\nruh 𝃊}}
+  \def\fen{{\nruh 𝃋}}
+  \def\fenantifonia{{\nruh 𝃌}}
   \def\omalonapo{𝃍}
   \def\omalonol{𝃎}
   \def\omalonkn{𝃏}
-  \def\d{{\ruh 𝃐}}
-  \def\dd{{\ruh 𝃑}}
-  \def\ddd{{\ruh 𝃒}}
-  \def\dddd{{\ruh 𝃓}}
-  \def\y{{\ruh 𝃔}}
-  \def\yy{{\ruh 𝃕}}
-  \def\yyy{{\ruh 𝃖}}
-  \def\yyyy{{\ruh 𝃗}}
-  \def\genikidiesis{{\ruh 𝃘}}
-  \def\genikiyfesis{{\ruh 𝃙}}
-  \def\diastolimikri{{\ruh 𝃚}}
-  \def\diastoli{{\ruh 𝃛}}
-  \def\diastolidipli{{\ruh 𝃜}}
-  \def\diastolitheseos{{\ruh 𝃝}}
-  \def\ism{{\ruh𝃞}}
-  \def\isd{{\ruh𝃟}}
-  \def\isk{{\ruh𝃠}}
-  \def\isz{{\ruh𝃡}}
-  \def\isn{{\ruh𝃢}}
-  \def\isp{{\ruh𝃣}}
-  \def\isB{{\ruh𝃤}}
-  \def\isG{{\ruh𝃥}}
-  \def\isD{{\ruh𝃦}}
-  \def\isK{{\ruh𝃧}}
-  \def\isZ{{\ruh𝃨}}
-  \def\apa{{\ruh 𝃩}}
-  \def\avu{{\ruh 𝃪}}
-  \def\aga{{\ruh 𝃫}}
-  \def\adi{{\ruh 𝃬}}
-  \def\ake{{\ruh 𝃭}}
-  \def\azo{{\ruh 𝃮}}
-  \def\ani{{\ruh 𝃯}}
+  \def\d{{\nruh 𝃐}}
+  \def\dd{{\nruh 𝃑}}
+  \def\ddd{{\nruh 𝃒}}
+  \def\dddd{{\nruh 𝃓}}
+  \def\y{{\nruh 𝃔}}
+  \def\yy{{\nruh 𝃕}}
+  \def\yyy{{\nruh 𝃖}}
+  \def\yyyy{{\nruh 𝃗}}
+  \def\genikidiesis{{\nruh 𝃘}}
+  \def\genikiyfesis{{\nruh 𝃙}}
+  \def\diastolimikri{{\nruh 𝃚}}
+  \def\diastoli{{\nruh 𝃛}}
+  \def\diastolidipli{{\nruh 𝃜}}
+  \def\diastolitheseos{{\nruh 𝃝}}
+  \def\ism{{\nruh𝃞}}
+  \def\isd{{\nruh𝃟}}
+  \def\isk{{\nruh𝃠}}
+  \def\isz{{\nruh𝃡}}
+  \def\isn{{\nruh𝃢}}
+  \def\isp{{\nruh𝃣}}
+  \def\isB{{\nruh𝃤}}
+  \def\isG{{\nruh𝃥}}
+  \def\isD{{\nruh𝃦}}
+  \def\isK{{\nruh𝃧}}
+  \def\isZ{{\nruh𝃨}}
+  \def\apa{{\nruh 𝃩}}
+  \def\avu{{\nruh 𝃪}}
+  \def\aga{{\nruh 𝃫}}
+  \def\adi{{\nruh 𝃬}}
+  \def\ake{{\nruh 𝃭}}
+  \def\azo{{\nruh 𝃮}}
+  \def\ani{{\nruh 𝃯}}
   \def\knta{𝃰}
   \def\kn{𝃱}
   \def\kntakato{𝃲}
