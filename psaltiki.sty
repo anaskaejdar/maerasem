@@ -42,9 +42,9 @@
 \providecommand{\neumestack}[2][]{
   \renewcommand\stackalignment{c}
   \renewcommand\stacktype{L}
-  \stackon{\strut#1}{
-    {\neume\strut\hspace{\NeumeLAlignment}#2\hspace{\NeumeRAlignment}}
-  }\hspace{\NeumeStackAlignment}
+  \stackon{\strut\hspace{0.5\NeumeTextPadding}#1\hspace{0.5\NeumeTextPadding}}{
+    {\neume\strut\hspace{\NeumeAlignment}\hspace{0.5\NeumePadding}#2\hspace{-1\NeumeAlignment}\hspace{0.5\NeumePadding}}
+  }\hspace{\NeumeComboPadding}
 }
 \providecommand{\annotate}[2]{
   \renewcommand\stacktype{S}
