@@ -18,15 +18,17 @@
     \newenvironment{rightside}{\begin{translation}}{\end{translation}}
     \begin{alignment}
     }{
+      \resumeleftside
     \end{alignment}
   }
-  \newcommand\resumeleftside{
+  \providecommand\resumeleftsidetext{--- Resume on the left page ---}
+  \providecommand\resumeleftside{
     \begin{leftside}
     \end{leftside}
     \begin{rightside}
       \vbox to -\parskip {
         \faerman{
-          --- Resume on the left page ---
+          \resumeleftsidetext
         }
       }
     \end{rightside}
