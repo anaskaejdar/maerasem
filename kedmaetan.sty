@@ -12,26 +12,26 @@
 \providecommand\ruh{}
 
 \@ifpackageloaded{ekdosis}{
-  \newenvironment{enteqadi}{
+  \newenvironment{cleanalignment}{
     \setlength\linenumbersep{\maxdimen}\SetLineation{lineation=page,modulo,modulonum=100}
     \newenvironment{leftside}{\begin{edition*}}{\end{edition*}}
     \newenvironment{rightside}{\begin{translation}}{\end{translation}}
+      \providecommand\resumeleftsidetext{--- Resume on the left page ---}
+      \providecommand\resumeleftside{
+        \begin{leftside}
+        \end{leftside}
+        \begin{rightside}
+          \vbox to -\parskip {
+            \decree{
+              \resumeleftsidetext
+            }
+          }
+        \end{rightside}
+      }
     \begin{alignment}
     }{
       \resumeleftside
     \end{alignment}
-  }
-  \providecommand\resumeleftsidetext{--- Resume on the left page ---}
-  \providecommand\resumeleftside{
-    \begin{leftside}
-    \end{leftside}
-    \begin{rightside}
-      \vbox to -\parskip {
-        \faerman{
-          \resumeleftsidetext
-        }
-      }
-    \end{rightside}
   }
 }{}
 
@@ -50,13 +50,13 @@
 \@ifpackageloaded{psaltiki}{
   \providecommand\mart[1]{\vbox to 0.7\baselineskip{\vfil\hbox to 1em{\hfill\ruh\neume #1\hfill}\vfil}}
 }{}
-\providecommand\daestur[1]{{\ruh\textsc{\MakeLowercase{#1}}}}
-\providecommand\taemam[1]{{\setlength\parindent{0.5\parindent}\ \\\indent\indent\daestur{ #1: }\indent}}
-\providecommand\doubare[1][2]{\daestur{(#1x)}}
-\providecommand\faerman[1]{{
+\providecommand\helptxt[1]{{\ruh\scshape\MakeLowercase{#1}}}
+\providecommand\taemam[1]{{\setlength\parindent{0.5\parindent}\ \\\indent\indent\helptxt{ #1: }\indent}}
+\providecommand\doubare[1][2]{\helptxt{(#1x)}}
+\providecommand\decree[1]{{
   \Needspace*{6\baselineskip}
-  \setstretch{0.5}\vspace{-0.5\parskip}
-  \begin{center}\daestur{#1}\end{center}
+  \setstretch{0.6}\vspace{-0.5\parskip}
+  \begin{center}\helptxt{#1}\end{center}
   \vspace{-2.0\parskip}
 }}
 \providecommand\irmos[1]{\footnotesize(Irmos: \emph{#1})}
@@ -75,12 +75,14 @@
   \checkoddpage
   \ifthenelse{\boolean{oddpage}}{\hfill\newpage}{}
 }
-\newenvironment{goftegu}{
+\let\olddialogue\dialogue \let\endolddialogue\enddialogue
+\renewenvironment{dialogue}{
+  \let\OldDialogueLabel\DialogueLabel
+  \renewcommand*\DialogueLabel[1]{\helptxt{##1:}\hfil}
+  \olddialogue
   \setlength\parskip{0.5em}
-  \def\haerf##1{##1}
-  \renewcommand\haerf[1]{\speak{\ruh ##1}}
-  \begin{dialogue} }{
-  \end{dialogue}
+  }{
+  \endolddialogue
 }
 \newcounter{versenumber}
 \newenvironment{chantverses}{
@@ -89,23 +91,20 @@
     \def\chantverse##1{##1}
     \renewcommand\chantverse[1]{
       \refstepcounter{versenumber}
-      \haerf{\nth{\theversenumber} Verse}\emph{##1}
+      \speak{\nth{\theversenumber} Verse}\emph{##1}
     }
-    \begin{goftegu}
+    \begin{dialogue}
       \setlength\parskip{0em}
     }{
-    \end{goftegu}
+    \end{dialogue}
   \end{minipage}
 }
-\providecommand\haerf[2]{
+\providecommand\speak[2]{
   \vspace{0.3\baselineskip}
   \Needspace*{4\baselineskip}
-  \noindent\hspace{0em}\daestur{#1:}\hspace{0.5em}{\em #2}
+  \noindent\hspace{0em}\helptxt{#1:}\hspace{0.5em}{\em #2}
   \nopagebreak
 }
-\providecommand\zirnaezd{
-  \vspace{-\parskip}
-}
-\providecommand\zdrop{
-  \zirnaezd\drop
-}
+\providecommand\nearbelow{\vspace{-\parskip}}
+\providecommand\nb{\zirnaezd}
+\providecommand\ndrop{\nearbelow\drop}
