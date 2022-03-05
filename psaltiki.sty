@@ -36,24 +36,24 @@
 \newlength\NeumeFontSize
 \NeumeAutoResize
 \newlength\NeumeAlignment\setlength\NeumeAlignment{-0.3em}
-\newlength\NeumePadding\setlength\NeumePadding{-1.5em}
+\newlength\NeumePadding\setlength\NeumePadding{-1.4em}
 \newlength\NeumeTextPadding\setlength\NeumeTextPadding{-0.9em}
 \newlength\NeumeComboPadding\setlength\NeumeComboPadding{0em}
-\providecommand{\neumestack}[2][]{
+\providecommand{\neumestack}[2][\_]{
   \renewcommand\stackalignment{c}
   \renewcommand\stacktype{L}
-  \stackon{\strut\hspace{0.5\NeumeTextPadding}#1\hspace{0.5\NeumeTextPadding}}{
-    {\neume\strut\hspace{\NeumeAlignment}\hspace{0.5\NeumePadding}#2\hspace{-1\NeumeAlignment}\hspace{0.5\NeumePadding}}
+  \stackon{\strut\hspace{0.5\NeumeTextPadding} #1 \hspace{0.5\NeumeTextPadding}}{
+    {\neume\strut\hspace{\NeumeAlignment}\hspace{0.5\NeumePadding} #2 \hspace{-1\NeumeAlignment}\hspace{0.5\NeumePadding}}
   }\hspace{\NeumeComboPadding}
 }
 \providecommand{\annotate}[2]{
   \renewcommand\stacktype{S}
   \setlength\tmpFontSize{\f@size pt}
-  \stackon{#2}{
+  \stackon{ #2 }{
     \fontsize{0.5\tmpFontSize}{0.5\tmpFontSize}\selectfont
     \begin{varwidth}[t][5ex][t]{\textwidth}
       \ \\*[-2ex]
-      \ruh #1
+      \ruh { #1 }
     \end{varwidth}
   }
 }
