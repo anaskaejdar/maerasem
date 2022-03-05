@@ -50,13 +50,13 @@
 \@ifpackageloaded{psaltiki}{
   \providecommand\mart[1]{\vbox to 0.7\baselineskip{\vfil\hbox to 1em{\hfill\ruh\neume #1\hfill}\vfil}}
 }{}
-\providecommand\helptxt[1]{{\ruh\scshape\MakeLowercase{#1}}}
-\providecommand\taemam[1]{{\setlength\parindent{0.5\parindent}\ \\\indent\indent\helptxt{ #1: }\indent}}
-\providecommand\doubare[1][2]{\helptxt{(#1x)}}
+\providecommand\helper[1]{{\ruh\scshape\MakeLowercase{#1}}}
+\providecommand\respond[1]{{\setlength\parindent{0.5\parindent}\ \\\indent\indent\helper{ #1: }\indent}}
+\providecommand\doubare[1][2]{\helper{(#1x)}}
 \providecommand\decree[1]{{
   \Needspace*{6\baselineskip}
   \setstretch{0.6}\vspace{-0.5\parskip}
-  \begin{center}\helptxt{#1}\end{center}
+  \begin{center}\helper{#1}\end{center}
   \vspace{-2.0\parskip}
 }}
 \providecommand\irmos[1]{\footnotesize(Irmos: \emph{#1})}
@@ -78,7 +78,7 @@
 \let\olddialogue\dialogue \let\endolddialogue\enddialogue
 \renewenvironment{dialogue}{
   \let\OldDialogueLabel\DialogueLabel
-  \renewcommand*\DialogueLabel[1]{\helptxt{##1:}\hfil}
+  \renewcommand*\DialogueLabel[1]{\helper{##1:}\hfil}
   \olddialogue
   \setlength\parskip{0.5em}
   }{
@@ -102,9 +102,11 @@
 \providecommand\speak[2]{
   \vspace{0.3\baselineskip}
   \Needspace*{4\baselineskip}
-  \noindent\hspace{0em}\helptxt{#1:}\hspace{0.5em}{\em #2}
+  \noindent\hspace{0em}\helper{#1:}\hspace{0.5em}{\em #2}
   \nopagebreak
 }
 \providecommand\nearbelow{\vspace{-\parskip}}
-\providecommand\nb{\zirnaezd}
+\providecommand\nb{\nearbelow}
 \providecommand\ndrop{\nearbelow\drop}
+
+\setlength\parskip{1em}
