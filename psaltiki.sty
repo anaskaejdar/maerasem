@@ -26,19 +26,42 @@
   \par
   }\nopagebreak
 }
+\newlength\NeumeAlignment
+\newlength\NeumePadding
+\newlength\NeumeTextPadding
+\newlength\NeumeComboPadding
+
 \providecommand\NeumeFontScaleFactor{5}
+\providecommand\NeumeAlignmentScaleFactor{-0.3}
+\providecommand\NeumePaddingScaleFactor{-1.4}
+\providecommand\NeumeTextPaddingScaleFactor{-0.9}
+\providecommand\NeumeComboPaddingScaleFactor{0}
+\providecommand\DropcapScaleFactor{6}
 \providecommand\NeumeAutoResize{
   \setlength\tmpFontSize{\f@size pt}
-  \setlength\NeumeFontSize{\NeumeFontScaleFactor\tmpFontSize}
+  \setlength\NeumeFontSize    {\NeumeFontScaleFactor\tmpFontSize}
+  \setlength\NeumeAlignment   {\NeumeAlignmentScaleFactor\tmpFontSize}
+  \setlength\NeumePadding     {\NeumePaddingScaleFactor\tmpFontSize}
+  \setlength\NeumeTextPadding {\NeumeTextPaddingScaleFactor\tmpFontSize}
+  \setlength\NeumeComboPadding{\NeumeComboPaddingScaleFactor\tmpFontSize}
+}
+\def\takefirstletter #1#2 {
+  \ifcat\noexpand\relax\noexpand#1\def\next{#1{#2}\takefirstletter}\else
+  \def\next{\def\firstcharacter{#1}\def\firstcharremainder{#2}}\fi
+  \next
+}
+\newcommand\dropnstack[2][\_]{
+  {
+    \NeumeAutoResize
+    \takefirstletter #1
+    {\scshape\ruh\fontsize{\DropcapScaleFactor\tmpFontSize}{\DropcapScaleFactor\tmpFontSize}\selectfont\firstcharacter}
+    \neumestack[\scshape\firstcharremainder]{#2}
+  }
 }
 \newfontface\NeumeFont{SERAFIM+}
 \newlength\tmpFontSize
 \newlength\NeumeFontSize
 \NeumeAutoResize
-\newlength\NeumeAlignment\setlength\NeumeAlignment{-0.3em}
-\newlength\NeumePadding\setlength\NeumePadding{-1.4em}
-\newlength\NeumeTextPadding\setlength\NeumeTextPadding{-0.9em}
-\newlength\NeumeComboPadding\setlength\NeumeComboPadding{0em}
 \providecommand{\neumestack}[2][\_]{
   \renewcommand\stackalignment{c}
   \renewcommand\stacktype{L}
