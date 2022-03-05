@@ -8,7 +8,7 @@
 \RequirePackage{fontspec,stackengine,varwidth,luacode,luatexbase}
 
 \@ifpackageloaded{xcolor}{\providecommand\ruh{\color{red}}}{}
-\@ifpackageloaded{luacolor}{\providecommand\ruh{\color{red}}\providecommand\nruh{\ruh}}{}
+\@ifpackageloaded{luacolor}{\providecommand\nruh{\color{red}}\providecommand\ruh{\nruh}}{}
 \providecommand\ruh{}\providecommand\nruh{}
 
 \providecommand\needspacecommandwrapper[1]{}
@@ -17,7 +17,7 @@
 }{}
 \providecommand\hxos[4][Ἧχος]{
   \needspacecommandwrapper{6\baselineskip}
-  {\centering\ruh
+  {\centering\ruh\nruh
   \renewcommand\NeumeFontScaleFactor{2.5}\NeumeAutoResize
   #1
   {\neume\hspace{\NeumeAlignment}#2\hspace{-1\NeumeAlignment}}
