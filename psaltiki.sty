@@ -48,19 +48,22 @@
   \setlength\NeumeTextPadding {\NeumeTextPaddingScaleFactor\tmpFontSize}
   \setlength\NeumeComboPadding{\NeumeComboPaddingScaleFactor\tmpFontSize}
 }
-\def\takefirstletter #1#2 {
-  \ifcat\noexpand\relax\noexpand#1\def\next{#1{#2}\takefirstletter}\else
-  \def\next{\def\firstcharacter{#1}\def\firstcharremainder{#2}}\fi
+\def\storefirstletter #1#2 {
+  \ifcat\noexpand\relax\noexpand#1\def\next{#1{#2}\storefirstletter}\else
+  \def\next{\def\firstletter{#1}\def\firstletterremainder{#2}}\fi
   \next
 }
-\newcommand\dropnstack[2][\_]{
-  {
-    \NeumeAutoResize
-    \takefirstletter #1
-    {\scshape\ruh\fontsize{\DropcapScaleFactor\tmpFontSize}{\DropcapScaleFactor\tmpFontSize}\selectfont\firstcharacter}
-    \neumestack[\scshape\firstcharremainder]{#2}
-  }
-}
+\providecommand\dropfont{}
+\providecommand\neumedropcommand[1]{{
+  \unskip\NeumeAutoResize
+  \unskip\dropfont\scshape\ruh\fontsize{\DropcapScaleFactor\tmpFontSize}
+  {\DropcapScaleFactor\tmpFontSize}\selectfont\ignorespaces#1\unskip\hspace{-\NeumeAlignment}\ignorespaces
+}}
+\providecommand\dropstack[2][\_]{{
+  \unskip\storefirstletter #1
+  \unskip\neumedropcommand{\firstletter}
+  \unskip\neumestack[\scshape\firstletterremainder]{\ignorespaces#2\unskip}\ignorespaces
+}}
 \newfontface\NeumeFont{SERAFIM+}
 \newlength\tmpFontSize
 \newlength\NeumeFontSize
