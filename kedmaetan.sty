@@ -70,9 +70,8 @@
   \def\next{\takefirstlettercommand{#1}{#2}}\fi
   \next
 }
-\providecommand\dropfont{}
-\providecommand\dropcommand[2]{\needspace{\baselineskip}\let\LettrineFontHook\dropfont\lettrine{\ruh #1}{#2} }
-\providecommand\smalldropcommand[2]{\noindent{\scshape\ruh #1}{\scshape #2} }
+\providecommand\dropcommand[2]{\needspace{\baselineskip}\lettrine{\ruh #1}{#2} }
+\providecommand\smalldropcommand[2]{\noindent{\scshape\bfseries\ruh #1}{\scshape #2} }
 \providecommand\hugedropcommand[2]{\needspace{3\baselineskip}\let\LettrineFontHook\hugedropfont\lettrine[lines=5]{\ruh #1}{#2} }
 \providecommand\bigdropcommand[2]{\needspace{3\baselineskip}\let\LettrineFontHook\bigdropfont\lettrine[lines=4]{\ruh #1}{#2} }
 \providecommand\largedropcommand[2]{\needspace{3\baselineskip}\let\LettrineFontHook\largedropfont\lettrine[lines=3]{\ruh #1}{#2} }
