@@ -11,14 +11,15 @@
 \@ifpackageloaded{luacolor}{\providecommand\nruh{\color{red}}\providecommand\ruh{\nruh}}{}
 \providecommand\ruh{}\providecommand\nruh{}
 
-\providecommand\defaulthxostext{\greekfont Ἧχος}
+\providecommand\defaulthxostext{Ἧχος}
+\providecommand\hxosfonthook{\greekfont}
 \providecommand\texthxos[4][\defaulthxostext]{{
-  \ruh\nruh
-  \let\NeumeFontScaleFactor\NeumeFontScaleFactorHxos\NeumeAutoResize
-  #1
-  {\neume\hspace{\NeumeAlignment}#2\hspace{-1\NeumeAlignment}}
-  #3
-  {\neume\hspace{\NeumeAlignment}#4\hspace{-1\NeumeAlignment}}
+  \unskip\ruh\nruh
+  \unskip\let\NeumeFontScaleFactor\NeumeFontScaleFactorHxos\NeumeAutoResize
+  {\hxosfonthook #1 }
+  {\neume #2}
+  {\hxosfonthook #3 }
+  {\neume #4 }
 }}
 \providecommand\foretext[1]{{\centering\nruh\ruh #1\par\vspace{-\parskip}}}
 \providecommand\hxos[4][\defaulthxostext]{\foretext{\texthxos[#1]{#2}{#3}{#4}}}
@@ -33,20 +34,21 @@
 \newlength\NeumeComboPadding
 
 \providecommand\NeumeFontScaleFactor{5}
-\providecommand\NeumeFontScaleFactorHxos{2.5}
-\providecommand\NeumeFontScaleFactorInline{\NeumeFontScaleFactorHxos}
-\providecommand\NeumeAlignmentScaleFactor{-0.3}
+\providecommand\NeumeFontScaleFactorHxos{2.6}
+\providecommand\NeumeFontScaleFactorInline{2.4}
+\providecommand\NeumeAlignmentScaleFactor{-0.2}
 \providecommand\NeumePaddingScaleFactor{0}
-\providecommand\NeumeTextPaddingScaleFactor{0}
+\providecommand\NeumeTextPaddingScaleFactor{0.3}
 \providecommand\NeumeComboPaddingScaleFactor{0}
 \providecommand\DropcapScaleFactor{6}
 \providecommand\NeumeAutoResize{
-  \setlength\tmpFontSize{\f@size pt}
-  \setlength\NeumeFontSize    {\NeumeFontScaleFactor\tmpFontSize}
-  \setlength\NeumeAlignment   {\NeumeAlignmentScaleFactor\tmpFontSize}
-  \setlength\NeumePadding     {\NeumePaddingScaleFactor\tmpFontSize}
-  \setlength\NeumeTextPadding {\NeumeTextPaddingScaleFactor\tmpFontSize}
-  \setlength\NeumeComboPadding{\NeumeComboPaddingScaleFactor\tmpFontSize}
+  \unskip\setlength\tmpFontSize{\f@size pt}
+  \unskip\setlength\NeumeFontSize    {\NeumeFontScaleFactor\tmpFontSize}
+  \unskip\setlength\NeumeAlignment   {\NeumeAlignmentScaleFactor\tmpFontSize}
+  \unskip\setlength\NeumePadding     {\NeumePaddingScaleFactor\tmpFontSize}
+  \unskip\setlength\NeumeTextPadding {\NeumeTextPaddingScaleFactor\tmpFontSize}
+  \unskip\setlength\NeumeComboPadding{\NeumeComboPaddingScaleFactor\tmpFontSize}
+  \unskip\ignorespaces
 }
 \def\storefirstletter #1#2 {
   \ifcat\noexpand\relax\noexpand#1\def\next{#1{#2}\storefirstletter}\else
@@ -69,281 +71,283 @@
 \newlength\NeumeFontSize
 \newlength\tmpStackFontSize
 \NeumeAutoResize
-\providecommand{\neumestack}[2][\_]{
+\providecommand\neumestack[2][\_]{
   \unskip\renewcommand\stackalignment{c}
   \unskip\renewcommand\stacktype{L}
-  \unskip\stackon{\strut\hspace{0.5\NeumeTextPadding}#1\hspace{0.5\NeumeTextPadding}}{
+  \unskip\stackon{\strut\hspace{0.5\NeumeTextPadding}
+  \unskip\ignorespaces #1 \unskip\hspace{0.5\NeumeTextPadding}}{
     \unskip{\neume\strut\hspace{\NeumeAlignment}\hspace{0.5\NeumePadding}
-    \unskip\ignorespaces#2\unskip\hspace{-1\NeumeAlignment}\hspace{0.5\NeumePadding}}\ignorespaces
+    \unskip\ignorespaces #2 \unskip\hspace{-\NeumeAlignment}\hspace{0.5\NeumePadding}}\ignorespaces
   }\hspace{\NeumeComboPadding}\ignorespaces
 }
-\providecommand{\annotate}[2]{
+\providecommand\annotate[2]{
   \unskip\renewcommand\stacktype{S}
   \unskip\renewcommand\stackalignment{l}
   \unskip\setlength\tmpStackFontSize{\f@size pt}
-  \unskip\stackon{\ignorespaces#1\unskip}{
+  \unskip\stackon{\ignorespaces #1 \unskip}{
     \unskip\fontsize{0.5\tmpStackFontSize}{0.5\tmpStackFontSize}\selectfont
     \unskip\begin{varwidth}[t][5ex][t]{\textwidth}
       \unskip\ \\*[-2ex]
-      \unskip\ruh{\ignorespaces#2\unskip}
+      \unskip\ruh{\ignorespaces #2 \unskip}
     \unskip\end{varwidth}\ignorespaces
   }\ignorespaces
 }
 \newenvironment{byzmacros}{
-  \def\daseia{𝀁}
-  \def\perispomeni{𝀂}
-  \def\oxeiaekfonitikon{𝀃}
-  \def\oxeiadipli{𝀄}
-  \def\vareiaekfonitikon{𝀅}
-  \def\vareiadipli{𝀆}
-  \def\kathisti{𝀇}
-  \def\syrmatiki{𝀈}
-  \def\paraklitiki{𝀉}
-  \def\ypokrisis{𝀊}
-  \def\ypokrisisdipli{𝀋}
-  \def\kremasti{𝀌}
-  \def\apesoekfonitikon{𝀍}
-  \def\exoekfonitikon{𝀎}
-  \def\teleia{𝀏}
-  \def\kntaek{𝀐}
-  \def\apostrofos{𝀑}
-  \def\apostrofosdipli{𝀒}
-  \def\synevma{𝀓}
-  \def\thita{𝀔}
-  \def\oligarchaion{𝀕}
-  \def\gorgonarchaion{𝀖}
-  \def\psilon{𝀗}
-  \def\chamilon{𝀘}
-  \def\vathy{𝀙}
-  \def\isarchaion{𝀚}
-  \def\knarchaion{𝀛}
-  \def\kntaekarchaion{𝀜}
-  \def\saximata{𝀝}
-  \def\parichon{𝀞}
-  \def\stavrosapodexia{𝀟}
-  \def\oxeiaarchaion{𝀠}
-  \def\vareiaiarchaion{𝀡}
-  \def\apodermaarchaion{𝀢}
-  \def\apothema{𝀣}
-  \def\klasma{𝀤}
-  \def\revma{𝀥}
-  \def\piasmaarchaion{𝀦}
-  \def\tinagma{𝀧}
-  \def\anatrichisma{𝀨}
-  \def\seisma{𝀩}
-  \def\synagmaarchaion{𝀪}
-  \def\synagmametastavrou{𝀫}
-  \def\oyranismaarchaion{𝀬}
-  \def\thema{𝀭}
-  \def\lemoi{𝀮}
-  \def\dyo{𝀯}
-  \def\tria{𝀰}
-  \def\tessera{𝀱}
-  \def\kratimata{𝀲}
-  \def\apesoexoneo{𝀳}
-  \def\fthoraarchaion{𝀴}
-  \def\imifthora{𝀵}
-  \def\tromikonarchaion{𝀶}
-  \def\katavatromikon{𝀷}
-  \def\pelaston{𝀸}
-  \def\psifistonar{𝀹}
-  \def\kontevma{𝀺}
-  \def\chorevmaarchaion{𝀻}
-  \def\rapisma{𝀼}
-  \def\parakalesmaarchaion{𝀽}
-  \def\paraklitikiarchaion{𝀾}
-  \def\ichadin{𝀿}
-  \def\nana{𝁀}
-  \def\petasma{𝁁}
-  \def\kontevmaallo{𝁂}
-  \def\tromikonallo{𝁃}
-  \def\straggismata{𝁄}
-  \def\gronthismata{𝁅}
-  \def\is{𝁆}
-  \def\olig{𝁇}
-  \def\oksia{𝁈}
-  \def\pet{𝁉}
-  \def\koufisma{𝁊}
-  \def\petastokoufisma{𝁋}
-  \def\kratimokoufisma{𝁌}
-  \def\pelastonneo{𝁍}
-  \def\ypsiliaristera{𝁎}
-  \def\ypsilimeso{𝁏}
-  \def\ypsili{𝁐}
-  \def\apo{𝁑}
-  \def\apostrofoisyndesmosneo{𝁒}
-  \def\yp{𝁓}
-  \def\kratimoyporroon{𝁔}
-  \def\el{𝁕}
-  \def\xa{𝁖}
-  \def\mikronis{𝁗}
-  \def\var{𝁘}
-  \def\piasmaneo{𝁙}
-  \def\psifiston{𝁚}
-  \def\omalon{𝁛}
-  \def\antikenoma{𝁜}
-  \def\lygisma{𝁝}
-  \def\paraklitikineo{𝁞}
-  \def\parakalesmaneo{𝁟}
-  \def\eteron{𝁠}
-  \def\kylisma{𝁡}
-  \def\antikenokylisma{𝁢}
-  \def\tromikonneo{𝁣}
-  \def\ekstrepton{𝁤}
-  \def\synagmaneo{𝁥}
-  \def\syrma{𝁦}
-  \def\chorevmaneo{𝁧}
-  \def\epegerma{𝁨}
-  \def\seismaneo{𝁩}
-  \def\xironklasma{𝁪}
-  \def\tromikopsifiston{𝁫}
-  \def\psifistolygisma{𝁬}
-  \def\tromikolygisma{𝁭}
-  \def\tromikoparakalesma{𝁮}
-  \def\psifistoparakalesma{𝁯}
-  \def\tromikosynagma{𝁰}
-  \def\psifistosynagma{𝁱}
-  \def\gorgosyntheton{𝁲}
-  \def\argosyntheton{𝁳}
-  \def\eteronargosyntheton{𝁴}
-  \def\oyranismaneo{𝁵}
-  \def\thematismaseso{𝁶}
-  \def\thematismosexo{𝁷}
-  \def\themaaploun{𝁸}
-  \def\theskaiapothes{𝁹}
-  \def\katavasma{𝁺}
-  \def\endofonon{𝁻}
-  \def\yfenkato{𝁼}
-  \def\yfenano{𝁽}
-  \def\stavros{𝁾}
-  \def\klasmaano{𝁿}
-  \def\dipliar{𝂀}
-  \def\kratimaarchaion{𝂁}
-  \def\kratimaallo{𝂂}
-  \def\kratimaneo{𝂃}
-  \def\apodermaneo{𝂄}
-  \def\apli{𝂅}
-  \def\dipli{𝂆}
-  \def\tripli{𝂇}
-  \def\tetrapli{𝂈}
-  \def\koronisbyz{𝂉}
-  \def\leimmaenoschronou{𝂊}
-  \def\leimmadyochronon{𝂋}
-  \def\leimmatrionchronon{𝂌}
-  \def\leimmatessaronchronon{𝂍}
-  \def\leimmaimiseoschronou{𝂎}
-  \def\gorgon{{\nruh 𝂏}}
-  \def\gorgonparestigmenonaristera{{\nruh𝂐}}
-  \def\gorgonparestigmenondexia{{\nruh𝂑}}
-  \def\digorgon{{\nruh 𝂒}}
-  \def\digorgparestigmaristerkato{{\nruh𝂓}}
-  \def\digorgparestigmaristerano{{\nruh𝂔}}
-  \def\digorgonparestigmenondexia{{\nruh𝂕}}
-  \def\trigorgon{{\nruh 𝂖}}
-  \def\argon{{\nruh𝂗}}
-  \def\imidiargon{{\nruh𝂘}}
-  \def\diargon{{\nruh𝂙}}
-  \def\agogipoliargi{{\nruh𝂚}}
-  \def\agogiargoteri{{\nruh𝂛}}
-  \def\agogiargi{{\nruh𝂜}}
-  \def\agogimetria{{\nruh𝂝}}
-  \def\anooksia{{\nruh𝂞}}
-  \def\agogigorgi{{\nruh𝂟}}
-  \def\agogigorgoteri{{\nruh𝂠}}
-  \def\agogipoligorgi{{\nruh𝂡}}
-  \def\mpa{{\nruh 𝂢}}
-  \def\mp{{\nruh 𝂣}}
-  \def\mda{{\nruh 𝂤}}
-  \def\mdb{{\nruh 𝂥}}
-  \def\mt{{\nruh 𝂦}}
-  \def\mtri{{\nruh 𝂧}}
-  \def\mtet{{\nruh 𝂨}}
-  \def\mleg{{\nruh 𝂩}}
-  \def\mlegetos{{\nruh 𝂪}}
-  \def\mpl{{\nruh 𝂫}}
-  \def\istelichi{{\nruh 𝂬}}
-  \def\mapos{{\nruh 𝂭}}
-  \def\fantetra{{\nruh 𝂮}}
-  \def\fanmono{{\nruh 𝂯}}
-  \def\fandifon{{\nruh 𝂰}}
-  \def\mvar{{\nruh 𝂱}}
-  \def\mprotovarys{{\nruh 𝂲}}
-  \def\mpltet{{\nruh 𝂳}}
-  \def\moda{𝂴}
-  \def\modb{𝂵}
-  \def\fb{{\nruh 𝂶}}
-  \def\imifonon{{\nruh 𝂷}}
-  \def\imifthoron{{\nruh 𝂸}}
-  \def\fda{{\nruh 𝂹}}
-  \def\fp{{\nruh 𝂺}}
-  \def\fg{{\nruh 𝂻}}
-  \def\naos{{\nruh 𝂼}}
-  \def\fd{{\nruh 𝂽}}
-  \def\ms{{\nruh 𝂾}}
-  \def\fk{{\nruh 𝂿}}
-  \def\fz{{\nruh 𝃀}}
-  \def\fn{{\nruh 𝃁}}
-  \def\fna{{\nruh 𝃂}}
-  \def\fm{{\nruh 𝃃}}
-  \def\mm{{\nruh 𝃄}}
-  \def\fs{{\nruh 𝃅}}
-  \def\fmk{{\nruh 𝃆}}
-  \def\fnenano{{\nruh 𝃇}}
-  \def\chrzygos{{\nruh 𝃈}}
-  \def\chrkliton{{\nruh 𝃉}}
-  \def\chrspathi{{\nruh 𝃊}}
-  \def\fen{{\nruh 𝃋}}
-  \def\fenantifonia{{\nruh 𝃌}}
-  \def\omalonapo{𝃍}
-  \def\omalonol{𝃎}
-  \def\omalonkn{𝃏}
-  \def\d{{\nruh 𝃐}}
-  \def\dd{{\nruh 𝃑}}
-  \def\ddd{{\nruh 𝃒}}
-  \def\dddd{{\nruh 𝃓}}
-  \def\y{{\nruh 𝃔}}
-  \def\yy{{\nruh 𝃕}}
-  \def\yyy{{\nruh 𝃖}}
-  \def\yyyy{{\nruh 𝃗}}
-  \def\genikidiesis{{\nruh 𝃘}}
-  \def\genikiyfesis{{\nruh 𝃙}}
-  \def\diastolimikri{{\nruh 𝃚}}
-  \def\diastoli{{\nruh 𝃛}}
-  \def\diastolidipli{{\nruh 𝃜}}
-  \def\diastolitheseos{{\nruh 𝃝}}
-  \def\ism{{\nruh𝃞}}
-  \def\isd{{\nruh𝃟}}
-  \def\isk{{\nruh𝃠}}
-  \def\isz{{\nruh𝃡}}
-  \def\isn{{\nruh𝃢}}
-  \def\isp{{\nruh𝃣}}
-  \def\isB{{\nruh𝃤}}
-  \def\isG{{\nruh𝃥}}
-  \def\isD{{\nruh𝃦}}
-  \def\isK{{\nruh𝃧}}
-  \def\isZ{{\nruh𝃨}}
-  \def\apa{{\nruh 𝃩}}
-  \def\avu{{\nruh 𝃪}}
-  \def\aga{{\nruh 𝃫}}
-  \def\adi{{\nruh 𝃬}}
-  \def\ake{{\nruh 𝃭}}
-  \def\azo{{\nruh 𝃮}}
-  \def\ani{{\nruh 𝃯}}
-  \def\knta{𝃰}
-  \def\kn{𝃱}
-  \def\kntakato{𝃲}
-  \def\knkato{𝃳}
-  \def\klasmakato{𝃴}
-  \def\gorgonkato{𝃵}
-  \def\zwj{‍}
-  \def\wj{⁠}
-  \def\zwsp{​}
+  \unskip\def\daseia{𝀁}
+  \unskip\def\perispomeni{𝀂}
+  \unskip\def\oxeiaekfonitikon{𝀃}
+  \unskip\def\oxeiadipli{𝀄}
+  \unskip\def\vareiaekfonitikon{𝀅}
+  \unskip\def\vareiadipli{𝀆}
+  \unskip\def\kathisti{𝀇}
+  \unskip\def\syrmatiki{𝀈}
+  \unskip\def\paraklitiki{𝀉}
+  \unskip\def\ypokrisis{𝀊}
+  \unskip\def\ypokrisisdipli{𝀋}
+  \unskip\def\kremasti{𝀌}
+  \unskip\def\apesoekfonitikon{𝀍}
+  \unskip\def\exoekfonitikon{𝀎}
+  \unskip\def\teleia{𝀏}
+  \unskip\def\kntaek{𝀐}
+  \unskip\def\apostrofos{𝀑}
+  \unskip\def\apostrofosdipli{𝀒}
+  \unskip\def\synevma{𝀓}
+  \unskip\def\thita{𝀔}
+  \unskip\def\oligarchaion{𝀕}
+  \unskip\def\gorgonarchaion{𝀖}
+  \unskip\def\psilon{𝀗}
+  \unskip\def\chamilon{𝀘}
+  \unskip\def\vathy{𝀙}
+  \unskip\def\isarchaion{𝀚}
+  \unskip\def\knarchaion{𝀛}
+  \unskip\def\kntaekarchaion{𝀜}
+  \unskip\def\saximata{𝀝}
+  \unskip\def\parichon{𝀞}
+  \unskip\def\stavrosapodexia{𝀟}
+  \unskip\def\oxeiaarchaion{𝀠}
+  \unskip\def\vareiaiarchaion{𝀡}
+  \unskip\def\apodermaarchaion{𝀢}
+  \unskip\def\apothema{𝀣}
+  \unskip\def\klasma{𝀤}
+  \unskip\def\revma{𝀥}
+  \unskip\def\piasmaarchaion{𝀦}
+  \unskip\def\tinagma{𝀧}
+  \unskip\def\anatrichisma{𝀨}
+  \unskip\def\seisma{𝀩}
+  \unskip\def\synagmaarchaion{𝀪}
+  \unskip\def\synagmametastavrou{𝀫}
+  \unskip\def\oyranismaarchaion{𝀬}
+  \unskip\def\thema{𝀭}
+  \unskip\def\lemoi{𝀮}
+  \unskip\def\dyo{𝀯}
+  \unskip\def\tria{𝀰}
+  \unskip\def\tessera{𝀱}
+  \unskip\def\kratimata{𝀲}
+  \unskip\def\apesoexoneo{𝀳}
+  \unskip\def\fthoraarchaion{𝀴}
+  \unskip\def\imifthora{𝀵}
+  \unskip\def\tromikonarchaion{𝀶}
+  \unskip\def\katavatromikon{𝀷}
+  \unskip\def\pelaston{𝀸}
+  \unskip\def\psifistonar{𝀹}
+  \unskip\def\kontevma{𝀺}
+  \unskip\def\chorevmaarchaion{𝀻}
+  \unskip\def\rapisma{𝀼}
+  \unskip\def\parakalesmaarchaion{𝀽}
+  \unskip\def\paraklitikiarchaion{𝀾}
+  \unskip\def\ichadin{𝀿}
+  \unskip\def\nana{𝁀}
+  \unskip\def\petasma{𝁁}
+  \unskip\def\kontevmaallo{𝁂}
+  \unskip\def\tromikonallo{𝁃}
+  \unskip\def\straggismata{𝁄}
+  \unskip\def\gronthismata{𝁅}
+  \unskip\def\is{𝁆}
+  \unskip\def\olig{𝁇}
+  \unskip\def\oksia{𝁈}
+  \unskip\def\pet{𝁉}
+  \unskip\def\koufisma{𝁊}
+  \unskip\def\petastokoufisma{𝁋}
+  \unskip\def\kratimokoufisma{𝁌}
+  \unskip\def\pelastonneo{𝁍}
+  \unskip\def\ypsiliaristera{𝁎}
+  \unskip\def\ypsilimeso{𝁏}
+  \unskip\def\ypsili{𝁐}
+  \unskip\def\apo{𝁑}
+  \unskip\def\apostrofoisyndesmosneo{𝁒}
+  \unskip\def\yp{𝁓}
+  \unskip\def\kratimoyporroon{𝁔}
+  \unskip\def\el{𝁕}
+  \unskip\def\xa{𝁖}
+  \unskip\def\mikronis{𝁗}
+  \unskip\def\var{𝁘}
+  \unskip\def\piasmaneo{𝁙}
+  \unskip\def\psifiston{𝁚}
+  \unskip\def\omalon{𝁛}
+  \unskip\def\antikenoma{𝁜}
+  \unskip\def\lygisma{𝁝}
+  \unskip\def\paraklitikineo{𝁞}
+  \unskip\def\parakalesmaneo{𝁟}
+  \unskip\def\eteron{𝁠}
+  \unskip\def\kylisma{𝁡}
+  \unskip\def\antikenokylisma{𝁢}
+  \unskip\def\tromikonneo{𝁣}
+  \unskip\def\ekstrepton{𝁤}
+  \unskip\def\synagmaneo{𝁥}
+  \unskip\def\syrma{𝁦}
+  \unskip\def\chorevmaneo{𝁧}
+  \unskip\def\epegerma{𝁨}
+  \unskip\def\seismaneo{𝁩}
+  \unskip\def\xironklasma{𝁪}
+  \unskip\def\tromikopsifiston{𝁫}
+  \unskip\def\psifistolygisma{𝁬}
+  \unskip\def\tromikolygisma{𝁭}
+  \unskip\def\tromikoparakalesma{𝁮}
+  \unskip\def\psifistoparakalesma{𝁯}
+  \unskip\def\tromikosynagma{𝁰}
+  \unskip\def\psifistosynagma{𝁱}
+  \unskip\def\gorgosyntheton{𝁲}
+  \unskip\def\argosyntheton{𝁳}
+  \unskip\def\eteronargosyntheton{𝁴}
+  \unskip\def\oyranismaneo{𝁵}
+  \unskip\def\thematismaseso{𝁶}
+  \unskip\def\thematismosexo{𝁷}
+  \unskip\def\themaaploun{𝁸}
+  \unskip\def\theskaiapothes{𝁹}
+  \unskip\def\katavasma{𝁺}
+  \unskip\def\endofonon{𝁻}
+  \unskip\def\yfenkato{𝁼}
+  \unskip\def\yfenano{𝁽}
+  \unskip\def\stavros{𝁾}
+  \unskip\def\klasmaano{𝁿}
+  \unskip\def\dipliar{𝂀}
+  \unskip\def\kratimaarchaion{𝂁}
+  \unskip\def\kratimaallo{𝂂}
+  \unskip\def\kratimaneo{𝂃}
+  \unskip\def\apodermaneo{𝂄}
+  \unskip\def\apli{𝂅}
+  \unskip\def\dipli{𝂆}
+  \unskip\def\tripli{𝂇}
+  \unskip\def\tetrapli{𝂈}
+  \unskip\def\koronisbyz{𝂉}
+  \unskip\def\leimmaenoschronou{𝂊}
+  \unskip\def\leimmadyochronon{𝂋}
+  \unskip\def\leimmatrionchronon{𝂌}
+  \unskip\def\leimmatessaronchronon{𝂍}
+  \unskip\def\leimmaimiseoschronou{𝂎}
+  \unskip\def\gorgon{{\nruh 𝂏}}
+  \unskip\def\gorgonparestigmenonaristera{{\nruh𝂐}}
+  \unskip\def\gorgonparestigmenondexia{{\nruh𝂑}}
+  \unskip\def\digorgon{{\nruh 𝂒}}
+  \unskip\def\digorgparestigmaristerkato{{\nruh𝂓}}
+  \unskip\def\digorgparestigmaristerano{{\nruh𝂔}}
+  \unskip\def\digorgonparestigmenondexia{{\nruh𝂕}}
+  \unskip\def\trigorgon{{\nruh 𝂖}}
+  \unskip\def\argon{{\nruh𝂗}}
+  \unskip\def\imidiargon{{\nruh𝂘}}
+  \unskip\def\diargon{{\nruh𝂙}}
+  \unskip\def\agogipoliargi{{\nruh𝂚}}
+  \unskip\def\agogiargoteri{{\nruh𝂛}}
+  \unskip\def\agogiargi{{\nruh𝂜}}
+  \unskip\def\agogimetria{{\nruh𝂝}}
+  \unskip\def\anooksia{{\nruh𝂞}}
+  \unskip\def\agogigorgi{{\nruh𝂟}}
+  \unskip\def\agogigorgoteri{{\nruh𝂠}}
+  \unskip\def\agogipoligorgi{{\nruh𝂡}}
+  \unskip\def\mpa{{\nruh 𝂢}}
+  \unskip\def\mp{{\nruh 𝂣}}
+  \unskip\def\mda{{\nruh 𝂤}}
+  \unskip\def\mdb{{\nruh 𝂥}}
+  \unskip\def\mt{{\nruh 𝂦}}
+  \unskip\def\mtri{{\nruh 𝂧}}
+  \unskip\def\mtet{{\nruh 𝂨}}
+  \unskip\def\mleg{{\nruh 𝂩}}
+  \unskip\def\mlegetos{{\nruh 𝂪}}
+  \unskip\def\mpl{{\nruh 𝂫}}
+  \unskip\def\istelichi{{\nruh 𝂬}}
+  \unskip\def\mapos{{\nruh 𝂭}}
+  \unskip\def\fantetra{{\nruh 𝂮}}
+  \unskip\def\fanmono{{\nruh 𝂯}}
+  \unskip\def\fandifon{{\nruh 𝂰}}
+  \unskip\def\mvar{{\nruh 𝂱}}
+  \unskip\def\mprotovarys{{\nruh 𝂲}}
+  \unskip\def\mpltet{{\nruh 𝂳}}
+  \unskip\def\moda{𝂴}
+  \unskip\def\modb{𝂵}
+  \unskip\def\fb{{\nruh 𝂶}}
+  \unskip\def\imifonon{{\nruh 𝂷}}
+  \unskip\def\imifthoron{{\nruh 𝂸}}
+  \unskip\def\fda{{\nruh 𝂹}}
+  \unskip\def\fp{{\nruh 𝂺}}
+  \unskip\def\fg{{\nruh 𝂻}}
+  \unskip\def\naos{{\nruh 𝂼}}
+  \unskip\def\fd{{\nruh 𝂽}}
+  \unskip\def\ms{{\nruh 𝂾}}
+  \unskip\def\fk{{\nruh 𝂿}}
+  \unskip\def\fz{{\nruh 𝃀}}
+  \unskip\def\fn{{\nruh 𝃁}}
+  \unskip\def\fna{{\nruh 𝃂}}
+  \unskip\def\fm{{\nruh 𝃃}}
+  \unskip\def\mm{{\nruh 𝃄}}
+  \unskip\def\fs{{\nruh 𝃅}}
+  \unskip\def\fmk{{\nruh 𝃆}}
+  \unskip\def\fnenano{{\nruh 𝃇}}
+  \unskip\def\chrzygos{{\nruh 𝃈}}
+  \unskip\def\chrkliton{{\nruh 𝃉}}
+  \unskip\def\chrspathi{{\nruh 𝃊}}
+  \unskip\def\fen{{\nruh 𝃋}}
+  \unskip\def\fenantifonia{{\nruh 𝃌}}
+  \unskip\def\omalonapo{𝃍}
+  \unskip\def\omalonol{𝃎}
+  \unskip\def\omalonkn{𝃏}
+  \unskip\def\d{{\nruh 𝃐}}
+  \unskip\def\dd{{\nruh 𝃑}}
+  \unskip\def\ddd{{\nruh 𝃒}}
+  \unskip\def\dddd{{\nruh 𝃓}}
+  \unskip\def\y{{\nruh 𝃔}}
+  \unskip\def\yy{{\nruh 𝃕}}
+  \unskip\def\yyy{{\nruh 𝃖}}
+  \unskip\def\yyyy{{\nruh 𝃗}}
+  \unskip\def\genikidiesis{{\nruh 𝃘}}
+  \unskip\def\genikiyfesis{{\nruh 𝃙}}
+  \unskip\def\diastolimikri{{\nruh 𝃚}}
+  \unskip\def\diastoli{{\nruh 𝃛}}
+  \unskip\def\diastolidipli{{\nruh 𝃜}}
+  \unskip\def\diastolitheseos{{\nruh 𝃝}}
+  \unskip\def\ism{{\nruh𝃞}}
+  \unskip\def\isd{{\nruh𝃟}}
+  \unskip\def\isk{{\nruh𝃠}}
+  \unskip\def\isz{{\nruh𝃡}}
+  \unskip\def\isn{{\nruh𝃢}}
+  \unskip\def\isp{{\nruh𝃣}}
+  \unskip\def\isB{{\nruh𝃤}}
+  \unskip\def\isG{{\nruh𝃥}}
+  \unskip\def\isD{{\nruh𝃦}}
+  \unskip\def\isK{{\nruh𝃧}}
+  \unskip\def\isZ{{\nruh𝃨}}
+  \unskip\def\apa{{\nruh 𝃩}}
+  \unskip\def\avu{{\nruh 𝃪}}
+  \unskip\def\aga{{\nruh 𝃫}}
+  \unskip\def\adi{{\nruh 𝃬}}
+  \unskip\def\ake{{\nruh 𝃭}}
+  \unskip\def\azo{{\nruh 𝃮}}
+  \unskip\def\ani{{\nruh 𝃯}}
+  \unskip\def\knta{𝃰}
+  \unskip\def\kn{𝃱}
+  \unskip\def\kntakato{𝃲}
+  \unskip\def\knkato{𝃳}
+  \unskip\def\klasmakato{𝃴}
+  \unskip\def\gorgonkato{𝃵}
+  \unskip\def\zwj{‍}
+  \unskip\def\wj{⁠}
+  \unskip\def\zwsp{​}
+  \unskip\ignorespaces
 }{}
 \newenvironment{troparion}{}{}
 \newenvironment{neume}{
-  \fontsize{\NeumeFontSize}{\NeumeFontSize}\NeumeFont
-  \byzmacros
-}{}
+  \unskip\fontsize{\NeumeFontSize}{\NeumeFontSize}\NeumeFont
+  \unskip\byzmacros\ignorespaces
+}{\unskip\ignorespaces}
 
 %% Lua-side code
 \begin{luacode}
