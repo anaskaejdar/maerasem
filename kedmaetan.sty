@@ -5,7 +5,7 @@
 %
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{kedmaetan}
-\RequirePackage{setspace,dialogue,lettrine,needspace,changepage,ifthen}
+\RequirePackage{setspace,needspace,lettrine,changepage,ifthen}
 
 \@ifpackageloaded{xcolor}{\providecommand\ruh{\color{red}}}{}
 \@ifpackageloaded{luacolor}{\providecommand\ruh{\color{red}}}{}
@@ -16,18 +16,18 @@
     \setlength\linenumbersep{\maxdimen}\SetLineation{lineation=page,modulo,modulonum=100}
     \newenvironment{leftside}{\begin{edition*}}{\end{edition*}}
     \newenvironment{rightside}{\begin{translation}}{\end{translation}}
-      \providecommand\resumeleftsidetext{--- Resume on the left page ---}
-      \providecommand\resumeleftside{
-        \begin{leftside}
-        \end{leftside}
-        \begin{rightside}
-          \vbox to -\parskip {
-            \decree{
-              \resumeleftsidetext
-            }
+    \providecommand\resumeleftsidetext{--- Resume on the left page ---}
+    \providecommand\resumeleftside{
+      \begin{leftside}
+      \end{leftside}
+      \begin{rightside}
+        \vbox to -\parskip {
+          \decree{
+            \resumeleftsidetext
           }
-        \end{rightside}
-      }
+        }
+      \end{rightside}
+    }
     \begin{alignment}
     }{
       \resumeleftside
@@ -75,14 +75,23 @@
   \checkoddpage
   \ifthenelse{\boolean{oddpage}}{\hfill\newpage}{}
 }
-\let\olddialogue\dialogue \let\endolddialogue\enddialogue
-\renewenvironment{dialogue}{
-  \let\OldDialogueLabel\DialogueLabel
-  \renewcommand*\DialogueLabel[1]{\helper{##1:}\hfil}
-  \olddialogue
-  \setlength\parskip{0.5em}
+\@ifpackageloaded{dialogue}{
+  \let\olddialogue\dialogue \let\endolddialogue\enddialogue
+  \renewenvironment{dialogue}{
+    \let\OldDialogueLabel\DialogueLabel
+    \renewcommand*\DialogueLabel[1]{\helper{##1:}\hfil}
+    \olddialogue
+    \setlength\parskip{0.5em}
   }{
-  \endolddialogue
+    \endolddialogue
+  }
+}{
+  \newenvironment{dialogue}{ % TODO Hanging indent
+    \setlength\parskip{0em}
+    \setlength\parindent{0em}
+    \let\outerspeak\speak
+    \renewcommand\speak[1]{\par\outerspeak{##1}{}}
+  }{}
 }
 \newcounter{versenumber}
 \newenvironment{chantverses}{
@@ -100,10 +109,7 @@
   \end{minipage}
 }
 \providecommand\speak[2]{
-  \vspace{0.3\baselineskip}
-  \Needspace*{4\baselineskip}
   \noindent\hspace{0em}\helper{#1:}\hspace{0.5em}{\em #2}
-  \nopagebreak
 }
 \providecommand\nearbelow{\vspace{-\parskip}}
 \providecommand\nb{\nearbelow}
