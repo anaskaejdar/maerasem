@@ -60,14 +60,15 @@
 }{}
 \providecommand\helper[1]{{\ruh\scshape\MakeLowercase{#1}}}
 \providecommand\respond[1]{{\setlength\parindent{0.5\parindent}\ \\\indent\indent\helper{ #1: }\indent}}
-\providecommand\doubare[1][2]{\helper{(#1x)}}
+\providecommand\again[1][2]{\helper{\normalfont(#1x)}}
 \providecommand\decree[1]{{
   \Needspace*{6\baselineskip}
   \setstretch{0.6}\vspace{-0.5\parskip}
   \begin{center}\helper{#1}\end{center}
   \vspace{-2.0\parskip}
 }}
-\providecommand\irmos[1]{\footnotesize(Irmos: \emph{#1})}
+
+\providecommand\heirmos[1]{\footnotesize(Heirmos: \emph{#1})}
 \providecommand\automelon[1]{\footnotesize(Automelon: \emph{#1})}
 \def\drop #1#2 {
   \ifcat\noexpand\relax\noexpand#1\def\next{#1{#2}\drop}\else
