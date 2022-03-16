@@ -62,10 +62,8 @@
 \providecommand\respond[1]{{\setlength\parindent{0.5\parindent}\ \\\indent\indent\helper{ #1: }\indent}}
 \providecommand\again[1][2]{\helper{\normalfont(#1x)}}
 \providecommand\decree[1]{{
-  \Needspace*{6\baselineskip}
-  \setstretch{0.6}\vspace{-0.5\parskip}
-  \begin{center}\helper{#1}\end{center}
-  \vspace{-2.0\parskip}
+  \setstretch{0.6}
+  \centering\helper{#1}\par
 }}
 
 \providecommand\heirmos[1]{\footnotesize(Heirmos: \emph{#1})}

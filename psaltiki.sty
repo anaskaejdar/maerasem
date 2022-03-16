@@ -5,27 +5,28 @@
 %
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{psaltiki}
-\RequirePackage{fontspec,stackengine,varwidth,luacode,luatexbase}
+\RequirePackage{fontspec,setspace,stackengine,varwidth,luacode,luatexbase}
 
 \@ifpackageloaded{xcolor}{\providecommand\ruh{\color{red}}}{}
 \@ifpackageloaded{luacolor}{\providecommand\nruh{\color{red}}\providecommand\ruh{\nruh}}{}
 \providecommand\ruh{}\providecommand\nruh{}
 
-\providecommand\needspacecommandwrapper[1]{}
-\@ifpackageloaded{needspace}{
-  \renewcommand\needspacecommandwrapper[1]{\Needspace*{#1}}
-}{}
-\providecommand\hxos[4][Ἧχος]{
-  \needspacecommandwrapper{6\baselineskip}
-  {\centering\ruh\nruh
-  \renewcommand\NeumeFontScaleFactor{2.5}\NeumeAutoResize
+\providecommand\defaulthxostext{\greekfont Ἧχος}
+\providecommand\texthxos[4][\defaulthxostext]{{
+  \ruh\nruh
+  \let\NeumeFontScaleFactor\NeumeFontScaleFactorHxos\NeumeAutoResize
   #1
   {\neume\hspace{\NeumeAlignment}#2\hspace{-1\NeumeAlignment}}
   #3
-  {\neume #4}
-  \par
-  }\nopagebreak
-}
+  {\neume\hspace{\NeumeAlignment}#4\hspace{-1\NeumeAlignment}}
+}}
+\providecommand\foretext[1]{{\centering\nruh\ruh #1\par\vspace{-\parskip}}}
+\providecommand\hxos[4][\defaulthxostext]{\foretext{\texthxos[#1]{#2}{#3}{#4}}}
+\providecommand\smallhxos[4][\defaulthxostext]{{
+  \setlength\parskip{0.5\parskip}
+  \setstretch{0.6}
+  \hxos[#1]{#2}{#3}{#4}
+}}
 \newlength\NeumeAlignment
 \newlength\NeumePadding
 \newlength\NeumeTextPadding
