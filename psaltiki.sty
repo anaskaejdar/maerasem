@@ -32,9 +32,11 @@
 \newlength\NeumeComboPadding
 
 \providecommand\NeumeFontScaleFactor{5}
+\providecommand\NeumeFontScaleFactorHxos{2.5}
+\providecommand\NeumeFontScaleFactorInline{\NeumeFontScaleFactorHxos}
 \providecommand\NeumeAlignmentScaleFactor{-0.3}
-\providecommand\NeumePaddingScaleFactor{-1.4}
-\providecommand\NeumeTextPaddingScaleFactor{-0.9}
+\providecommand\NeumePaddingScaleFactor{0}
+\providecommand\NeumeTextPaddingScaleFactor{0}
 \providecommand\NeumeComboPaddingScaleFactor{0}
 \providecommand\DropcapScaleFactor{6}
 \providecommand\NeumeAutoResize{
@@ -61,24 +63,27 @@
 \newfontface\NeumeFont{SERAFIM+}
 \newlength\tmpFontSize
 \newlength\NeumeFontSize
+\newlength\tmpStackFontSize
 \NeumeAutoResize
 \providecommand{\neumestack}[2][\_]{
-  \renewcommand\stackalignment{c}
-  \renewcommand\stacktype{L}
-  \stackon{\strut\hspace{0.5\NeumeTextPadding} #1 \hspace{0.5\NeumeTextPadding}}{
-    {\neume\strut\hspace{\NeumeAlignment}\hspace{0.5\NeumePadding} #2 \hspace{-1\NeumeAlignment}\hspace{0.5\NeumePadding}}
-  }\hspace{\NeumeComboPadding}
+  \unskip\renewcommand\stackalignment{c}
+  \unskip\renewcommand\stacktype{L}
+  \unskip\stackon{\strut\hspace{0.5\NeumeTextPadding}#1\hspace{0.5\NeumeTextPadding}}{
+    \unskip{\neume\strut\hspace{\NeumeAlignment}\hspace{0.5\NeumePadding}
+    \unskip\ignorespaces#2\unskip\hspace{-1\NeumeAlignment}\hspace{0.5\NeumePadding}}\ignorespaces
+  }\hspace{\NeumeComboPadding}\ignorespaces
 }
 \providecommand{\annotate}[2]{
-  \renewcommand\stacktype{S}
-  \setlength\tmpFontSize{\f@size pt}
-  \stackon{ #2 }{
-    \fontsize{0.5\tmpFontSize}{0.5\tmpFontSize}\selectfont
-    \begin{varwidth}[t][5ex][t]{\textwidth}
-      \ \\*[-2ex]
-      \ruh { #1 }
-    \end{varwidth}
-  }
+  \unskip\renewcommand\stacktype{S}
+  \unskip\renewcommand\stackalignment{l}
+  \unskip\setlength\tmpStackFontSize{\f@size pt}
+  \unskip\stackon{\ignorespaces#1\unskip}{
+    \unskip\fontsize{0.5\tmpStackFontSize}{0.5\tmpStackFontSize}\selectfont
+    \unskip\begin{varwidth}[t][5ex][t]{\textwidth}
+      \unskip\ \\*[-2ex]
+      \unskip\ruh{\ignorespaces#2\unskip}
+    \unskip\end{varwidth}\ignorespaces
+  }\ignorespaces
 }
 \newenvironment{byzmacros}{
   \def\daseia{𝀁}

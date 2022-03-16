@@ -48,7 +48,15 @@
 }{}
 
 \@ifpackageloaded{psaltiki}{
-  \providecommand\mart[1]{\vbox to 0.7\baselineskip{\vfil\hbox to 1em{\hfill\ruh\neume #1\hfill}\vfil}}
+  \providecommand\mart[1]{\vbox to 0.7\baselineskip{\vfil\hbox to 0.8em{
+    \let\NeumeFontScaleFactor\NeumeFontScaleFactorInline\NeumeAutoResize
+    \hfill
+    \hspace{-1.4em} %TODO: Get rid of magic number; figure out why it is needed
+    \hspace{\NeumeAlignment}\hspace{0.5\NeumePadding}
+    \ruh\neume #1
+    \hspace{-\NeumeAlignment}\hspace{0.5\NeumePadding}
+    \hfill
+  }\vfil}}
 }{}
 \providecommand\helper[1]{{\ruh\scshape\MakeLowercase{#1}}}
 \providecommand\respond[1]{{\setlength\parindent{0.5\parindent}\ \\\indent\indent\helper{ #1: }\indent}}
