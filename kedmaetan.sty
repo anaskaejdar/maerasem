@@ -54,7 +54,9 @@
     \unskip\ruh\neume\hspace{0.1em} #1 %TODO: Get rid of magic number
   \unskip}\vfil}}\ignorespaces
 }{}
-\providecommand\helper[1]{{\ruh\scshape\MakeLowercase{#1}}}
+\providecommand\schelper[1]{{\ruh\scshape #1}}
+\providecommand\ithelper[1]{{\ruh\itshape #1}}
+\providecommand\helper[1]{\schelper{#1}}
 \providecommand\respond[1]{{\setlength\parindent{0.5\parindent}\ \\\indent\indent\helper{ #1: }\indent}}
 \providecommand\again[1][2]{\helper{\normalfont(#1x)}}
 \providecommand\decree[1]{{
@@ -69,16 +71,25 @@
   \def\next{\takefirstlettercommand{#1}{#2}}\fi
   \next
 }
-\providecommand\dropcommand[2]{\needspace{\baselineskip}\lettrine{\ruh #1}{#2} }
-\providecommand\smalldropcommand[2]{\noindent{\scshape\bfseries\ruh #1}{\scshape #2} }
-\providecommand\hugedropcommand[2]{\needspace{3\baselineskip}\let\LettrineFontHook\hugedropfont\lettrine[lines=5]{\ruh #1}{#2} }
-\providecommand\bigdropcommand[2]{\needspace{3\baselineskip}\let\LettrineFontHook\bigdropfont\lettrine[lines=4]{\ruh #1}{#2} }
-\providecommand\largedropcommand[2]{\needspace{3\baselineskip}\let\LettrineFontHook\largedropfont\lettrine[lines=3]{\ruh #1}{#2} }
-\providecommand\drop{\let\takefirstlettercommand\dropcommand\takefirstletter}
-\providecommand\smalldrop{\let\takefirstlettercommand\smalldropcommand\takefirstletter}
-\providecommand\hugedrop{\let\takefirstlettercommand\hugedropcommand\takefirstletter}
-\providecommand\bigdrop{\let\takefirstlettercommand\bigdropcommand\takefirstletter}
-\providecommand\largedrop{\let\takefirstlettercommand\largedropcommand\takefirstletter}
+\providecommand\dropbcommand[2]{
+  \unskip\Needspace{2.8\baselineskip}
+  \unskip\lettrine{\ruh #1}{#2}{ }}
+\providecommand\dropacommand[2]{\noindent{\scshape\bfseries\ruh #1}{\scshape #2}{ }}
+\providecommand\dropccommand[2]{
+  \unskip\Needspace{3.8\baselineskip}
+  \unskip\let\LettrineFontHook\dropcfont\lettrine[lines=3]{\ruh #1}{#2}{ }}
+\providecommand\dropdcommand[2]{
+  \unskip\Needspace{4.8\baselineskip}
+  \unskip\let\LettrineFontHook\dropdfont\lettrine[lines=4]{\ruh #1}{#2}{ }}
+\providecommand\dropecommand[2]{
+  \unskip\Needspace{5.8\baselineskip}
+  \unskip\let\LettrineFontHook\dropefont\lettrine[lines=5]{\ruh #1}{#2}{ }}
+\providecommand\dropa{\let\takefirstlettercommand\dropacommand\takefirstletter}
+\providecommand\dropb{\let\takefirstlettercommand\dropbcommand\takefirstletter}
+\providecommand\dropc{\let\takefirstlettercommand\dropccommand\takefirstletter}
+\providecommand\dropd{\let\takefirstlettercommand\dropdcommand\takefirstletter}
+\providecommand\drope{\let\takefirstlettercommand\dropecommand\takefirstletter}
+\let\drop\dropb
 \newenvironment{haemsaefhe}{
   \noindent\begin{minipage}{\textwidth}
   }{
