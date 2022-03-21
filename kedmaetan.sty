@@ -54,9 +54,12 @@
     \unskip\ruh\neume\hspace{0.1em} #1 %TODO: Get rid of magic number
   \unskip}\vfil}}\ignorespaces
 }{}
-\providecommand\schelper[1]{{\ruh\scshape #1}}
-\providecommand\ithelper[1]{{\ruh\itshape #1}}
-\providecommand\helper[1]{\schelper{#1}}
+\providecommand\nhelper[1]{{\ruh #1}}
+\providecommand\schelper[1]{\nhelper{\scshape #1}}
+\providecommand\ithelper[1]{\nhelper{\itshape #1}}
+\providecommand\bfhelper[1]{\nhelper{\bfseries #1}}
+\providecommand\schelperlower[1]{\schelper{\MakeLowercase{#1}}}
+\providecommand\helper[1]{\schelperlower{#1}}
 \providecommand\respond[1]{{\setlength\parindent{0.5\parindent}\ \\\indent\indent\helper{ #1: }\indent}}
 \providecommand\again[1][2]{\helper{\normalfont(#1x)}}
 \providecommand\decree[1]{{
