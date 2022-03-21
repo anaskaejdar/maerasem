@@ -38,7 +38,7 @@
 \providecommand\NeumeFontScaleFactorInline{2.4}
 \providecommand\NeumeAlignmentScaleFactor{-0.2}
 \providecommand\NeumePaddingScaleFactor{0}
-\providecommand\NeumeTextPaddingScaleFactor{0.3}
+\providecommand\NeumeTextPaddingScaleFactor{0}
 \providecommand\NeumeComboPaddingScaleFactor{0}
 \providecommand\DropcapScaleFactor{6}
 \providecommand\NeumeAutoResize{
@@ -59,12 +59,12 @@
 \providecommand\neumedropcommand[1]{{
   \unskip\NeumeAutoResize
   \unskip\dropfont\scshape\ruh\fontsize{\DropcapScaleFactor\tmpFontSize}
-  {\DropcapScaleFactor\tmpFontSize}\selectfont\ignorespaces#1\unskip\hspace{-\NeumeAlignment}\ignorespaces
+  {\DropcapScaleFactor\tmpFontSize}\selectfont\ignorespaces #1 \unskip\hspace{-\NeumeAlignment}\ignorespaces
 }}
 \providecommand\dropstack[2][\_]{{
   \unskip\storefirstletter #1
   \unskip\neumedropcommand{\firstletter}
-  \unskip\neumestack[\scshape\firstletterremainder]{\ignorespaces#2\unskip}\ignorespaces
+  \unskip\neumestack[\scshape\firstletterremainder]{\ignorespaces #2 \unskip}\ignorespaces
 }}
 \newfontface\NeumeFont{SERAFIM+}
 \newlength\tmpFontSize
@@ -78,7 +78,7 @@
   \unskip\ignorespaces #1 \unskip\hspace{0.5\NeumeTextPadding}}{
     \unskip{\neume\strut\hspace{\NeumeAlignment}\hspace{0.5\NeumePadding}
     \unskip\ignorespaces #2 \unskip\hspace{-\NeumeAlignment}\hspace{0.5\NeumePadding}}\ignorespaces
-  }\hspace{\NeumeComboPadding}\ignorespaces
+  }\hspace{\NeumeComboPadding}{\fontsize{0.5\tmpFontSize}{0.5\tmpFontSize}\selectfont{ }}\ignorespaces
 }
 \providecommand\annotate[2]{
   \unskip\renewcommand\stacktype{S}

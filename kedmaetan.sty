@@ -50,9 +50,8 @@
 \@ifpackageloaded{psaltiki}{
   \providecommand\mart[1]{\vbox to 0.7\baselineskip{\vfil\hbox to 1.0em{
     \unskip\let\NeumeFontScaleFactor\NeumeFontScaleFactorInline\NeumeAutoResize
-    \unskip\hfill
-    \unskip\ruh\neume\ignorespaces #1
-    \unskip\hfill
+    \unskip\centering
+    \unskip\ruh\neume\hspace{0.1em} #1 %TODO: Get rid of magic number
   \unskip}\vfil}}\ignorespaces
 }{}
 \providecommand\helper[1]{{\ruh\scshape\MakeLowercase{#1}}}
