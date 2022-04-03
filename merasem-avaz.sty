@@ -1,28 +1,21 @@
-% Áelou! Káevarju dúing?  This is my first package ever and if it is
-% beneficial to you, then I am very happy, my frjénding.
 %
-% (c) Anastázius Kaejatí Darián
+% (c) Zachari Khayati Darian
 %
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{psaltiki}
-\RequirePackage{fontspec,setspace,stackengine,varwidth,luacode,luatexbase}
+\ProvidesPackage{merasem-avaz}
+\RequirePackage{fontspec,setspace,stackengine,varwidth,luacode,luatexbase,merasem-common}
 
-\@ifpackageloaded{xcolor}{\providecommand\ruh{\color{red}}}{}
-\@ifpackageloaded{luacolor}{\providecommand\nruh{\color{red}}\providecommand\ruh{\nruh}}{}
-\providecommand\ruh{}\providecommand\nruh{}
-
-\providecommand\defaulthxostext{Ἧχος}
+\providecommand\defaulthxostext{Ἦχος}
 \providecommand\hxosfonthook{\greekfont}
 \providecommand\texthxos[4][\defaulthxostext]{{
-  \unskip\ruh\nruh
+  \unskip\let\naefaes\empty\ruh
   \unskip\let\NeumeFontScaleFactor\NeumeFontScaleFactorHxos\NeumeAutoResize
   {\hxosfonthook #1 }
   {\neume #2}
   {\hxosfonthook #3 }
   {\neume #4 }
 }}
-\providecommand\foretext[1]{{\centering\nruh\ruh #1\par\vspace{-\parskip}}}
-\providecommand\hxos[4][\defaulthxostext]{\foretext{\texthxos[#1]{#2}{#3}{#4}}}
+\providecommand\hxos[4][\defaulthxostext]{{\let\helper\empty\decree{\texthxos[#1]{#2}{#3}{#4}}}}
 \providecommand\smallhxos[4][\defaulthxostext]{{
   \setlength\parskip{0.5\parskip}
   \setstretch{0.6}
@@ -40,7 +33,7 @@
 \providecommand\NeumePaddingScaleFactor{0}
 \providecommand\NeumeTextPaddingScaleFactor{0}
 \providecommand\NeumeComboPaddingScaleFactor{0}
-\providecommand\DropcapScaleFactor{6}
+\providecommand\DropcapScaleFactor{5.5}
 \providecommand\NeumeAutoResize{
   \unskip\setlength\tmpFontSize{\f@size pt}
   \unskip\setlength\NeumeFontSize    {\NeumeFontScaleFactor\tmpFontSize}
@@ -50,35 +43,31 @@
   \unskip\setlength\NeumeComboPadding{\NeumeComboPaddingScaleFactor\tmpFontSize}
   \unskip\ignorespaces
 }
-\def\storefirstletter #1#2 {
-  \ifcat\noexpand\relax\noexpand#1\def\next{#1{#2}\storefirstletter}\else
-  \def\next{\def\firstletter{#1}\def\firstletterremainder{#2}}\fi
-  \next
-}
 \providecommand\dropfont{}
-\providecommand\neumedropcommand[1]{{
+\providecommand\neumedropcommand[1]{{\leavevmode
   \unskip\NeumeAutoResize
   \unskip\dropfont\scshape\ruh\fontsize{\DropcapScaleFactor\tmpFontSize}
   {\DropcapScaleFactor\tmpFontSize}\selectfont\ignorespaces #1 \unskip\hspace{-\NeumeAlignment}\ignorespaces
 }}
-\providecommand\dropstack[2][\_]{{
+\providecommand\dropmpair[2][]{{\leavevmode
   \unskip\storefirstletter #1
   \unskip\neumedropcommand{\firstletter}
-  \unskip\neumestack[\scshape\firstletterremainder]{\ignorespaces #2 \unskip}\ignorespaces
+  \unskip\musicpair[\scshape\firstletterremainder]{\ignorespaces #2 \unskip}\ignorespaces
 }}
-\newfontface\NeumeFont{SERAFIM+}
+\providecommand\ULmuspair[2][]{\musicpair[#1\_]{#2}}
+\newfontface\NeumeFont{SERAFIM+} % https://psaltiki.info
 \newlength\tmpFontSize
 \newlength\NeumeFontSize
 \newlength\tmpStackFontSize
 \NeumeAutoResize
-\providecommand\neumestack[2][\_]{
+\providecommand\musicpair[2][]{
   \unskip\renewcommand\stackalignment{c}
   \unskip\renewcommand\stacktype{L}
   \unskip\stackon{\strut\hspace{0.5\NeumeTextPadding}
   \unskip\ignorespaces #1 \unskip\hspace{0.5\NeumeTextPadding}}{
     \unskip{\neume\strut\hspace{\NeumeAlignment}\hspace{0.5\NeumePadding}
     \unskip\ignorespaces #2 \unskip\hspace{-\NeumeAlignment}\hspace{0.5\NeumePadding}}\ignorespaces
-  }\hspace{\NeumeComboPadding}{\fontsize{0.5\tmpFontSize}{0.5\tmpFontSize}\selectfont{ }}\ignorespaces
+  }\hspace{\NeumeComboPadding}{ }\ignorespaces
 }
 \providecommand\annotate[2]{
   \unskip\renewcommand\stacktype{S}
@@ -92,6 +81,7 @@
     \unskip\end{varwidth}\ignorespaces
   }\ignorespaces
 }
+\providecommand\IsokratimaHook{\ruh}
 \newenvironment{byzmacros}{
   \unskip\def\daseia{𝀁}
   \unskip\def\perispomeni{𝀂}
@@ -235,103 +225,103 @@
   \unskip\def\leimmatrionchronon{𝂌}
   \unskip\def\leimmatessaronchronon{𝂍}
   \unskip\def\leimmaimiseoschronou{𝂎}
-  \unskip\def\gorgon{{\nruh 𝂏}}
-  \unskip\def\gorgonparestigmenonaristera{{\nruh𝂐}}
-  \unskip\def\gorgonparestigmenondexia{{\nruh𝂑}}
-  \unskip\def\digorgon{{\nruh 𝂒}}
-  \unskip\def\digorgparestigmaristerkato{{\nruh𝂓}}
-  \unskip\def\digorgparestigmaristerano{{\nruh𝂔}}
-  \unskip\def\digorgonparestigmenondexia{{\nruh𝂕}}
-  \unskip\def\trigorgon{{\nruh 𝂖}}
-  \unskip\def\argon{{\nruh𝂗}}
-  \unskip\def\imidiargon{{\nruh𝂘}}
-  \unskip\def\diargon{{\nruh𝂙}}
-  \unskip\def\agogipoliargi{{\nruh𝂚}}
-  \unskip\def\agogiargoteri{{\nruh𝂛}}
-  \unskip\def\agogiargi{{\nruh𝂜}}
-  \unskip\def\agogimetria{{\nruh𝂝}}
-  \unskip\def\anooksia{{\nruh𝂞}}
-  \unskip\def\agogigorgi{{\nruh𝂟}}
-  \unskip\def\agogigorgoteri{{\nruh𝂠}}
-  \unskip\def\agogipoligorgi{{\nruh𝂡}}
-  \unskip\def\mpa{{\nruh 𝂢}}
-  \unskip\def\mp{{\nruh 𝂣}}
-  \unskip\def\mda{{\nruh 𝂤}}
-  \unskip\def\mdb{{\nruh 𝂥}}
-  \unskip\def\mt{{\nruh 𝂦}}
-  \unskip\def\mtri{{\nruh 𝂧}}
-  \unskip\def\mtet{{\nruh 𝂨}}
-  \unskip\def\mleg{{\nruh 𝂩}}
-  \unskip\def\mlegetos{{\nruh 𝂪}}
-  \unskip\def\mpl{{\nruh 𝂫}}
-  \unskip\def\istelichi{{\nruh 𝂬}}
-  \unskip\def\mapos{{\nruh 𝂭}}
-  \unskip\def\fantetra{{\nruh 𝂮}}
-  \unskip\def\fanmono{{\nruh 𝂯}}
-  \unskip\def\fandifon{{\nruh 𝂰}}
-  \unskip\def\mvar{{\nruh 𝂱}}
-  \unskip\def\mprotovarys{{\nruh 𝂲}}
-  \unskip\def\mpltet{{\nruh 𝂳}}
+  \unskip\def\gorgon{{\naefaes 𝂏}}
+  \unskip\def\gorgonparestigmenonaristera{{\naefaes𝂐}}
+  \unskip\def\gorgonparestigmenondexia{{\naefaes𝂑}}
+  \unskip\def\digorgon{{\naefaes 𝂒}}
+  \unskip\def\digorgparestigmaristerkato{{\naefaes𝂓}}
+  \unskip\def\digorgparestigmaristerano{{\naefaes𝂔}}
+  \unskip\def\digorgonparestigmenondexia{{\naefaes𝂕}}
+  \unskip\def\trigorgon{{\naefaes 𝂖}}
+  \unskip\def\argon{{\naefaes𝂗}}
+  \unskip\def\imidiargon{{\naefaes𝂘}}
+  \unskip\def\diargon{{\naefaes𝂙}}
+  \unskip\def\agogipoliargi{{\naefaes𝂚}}
+  \unskip\def\agogiargoteri{{\naefaes𝂛}}
+  \unskip\def\agogiargi{{\naefaes𝂜}}
+  \unskip\def\agogimetria{{\naefaes𝂝}}
+  \unskip\def\anooksia{{\naefaes𝂞}}
+  \unskip\def\agogigorgi{{\naefaes𝂟}}
+  \unskip\def\agogigorgoteri{{\naefaes𝂠}}
+  \unskip\def\agogipoligorgi{{\naefaes𝂡}}
+  \unskip\def\mpa{{\naefaes 𝂢}}
+  \unskip\def\mp{{\naefaes 𝂣}}
+  \unskip\def\mda{{\naefaes 𝂤}}
+  \unskip\def\mdb{{\naefaes 𝂥}}
+  \unskip\def\mt{{\naefaes 𝂦}}
+  \unskip\def\mtri{{\naefaes 𝂧}}
+  \unskip\def\mtet{{\naefaes 𝂨}}
+  \unskip\def\mleg{{\naefaes 𝂩}}
+  \unskip\def\mlegetos{{\naefaes 𝂪}}
+  \unskip\def\mpl{{\naefaes 𝂫}}
+  \unskip\def\istelichi{{\naefaes 𝂬}}
+  \unskip\def\mapos{{\naefaes 𝂭}}
+  \unskip\def\fantetra{{\naefaes 𝂮}}
+  \unskip\def\fanmono{{\naefaes 𝂯}}
+  \unskip\def\fandifon{{\naefaes 𝂰}}
+  \unskip\def\mvar{{\naefaes 𝂱}}
+  \unskip\def\mprotovarys{{\naefaes 𝂲}}
+  \unskip\def\mpltet{{\naefaes 𝂳}}
   \unskip\def\moda{𝂴}
   \unskip\def\modb{𝂵}
-  \unskip\def\fb{{\nruh 𝂶}}
-  \unskip\def\imifonon{{\nruh 𝂷}}
-  \unskip\def\imifthoron{{\nruh 𝂸}}
-  \unskip\def\fda{{\nruh 𝂹}}
-  \unskip\def\fp{{\nruh 𝂺}}
-  \unskip\def\fg{{\nruh 𝂻}}
-  \unskip\def\naos{{\nruh 𝂼}}
-  \unskip\def\fd{{\nruh 𝂽}}
-  \unskip\def\ms{{\nruh 𝂾}}
-  \unskip\def\fk{{\nruh 𝂿}}
-  \unskip\def\fz{{\nruh 𝃀}}
-  \unskip\def\fn{{\nruh 𝃁}}
-  \unskip\def\fna{{\nruh 𝃂}}
-  \unskip\def\fm{{\nruh 𝃃}}
-  \unskip\def\mm{{\nruh 𝃄}}
-  \unskip\def\fs{{\nruh 𝃅}}
-  \unskip\def\fmk{{\nruh 𝃆}}
-  \unskip\def\fnenano{{\nruh 𝃇}}
-  \unskip\def\chrzygos{{\nruh 𝃈}}
-  \unskip\def\chrkliton{{\nruh 𝃉}}
-  \unskip\def\chrspathi{{\nruh 𝃊}}
-  \unskip\def\fen{{\nruh 𝃋}}
-  \unskip\def\fenantifonia{{\nruh 𝃌}}
+  \unskip\def\fb{{\naefaes 𝂶}}
+  \unskip\def\imifonon{{\naefaes 𝂷}}
+  \unskip\def\imifthoron{{\naefaes 𝂸}}
+  \unskip\def\fda{{\naefaes 𝂹}}
+  \unskip\def\fp{{\naefaes 𝂺}}
+  \unskip\def\fg{{\naefaes 𝂻}}
+  \unskip\def\naos{{\naefaes 𝂼}}
+  \unskip\def\fd{{\naefaes 𝂽}}
+  \unskip\def\ms{{\naefaes 𝂾}}
+  \unskip\def\fk{{\naefaes 𝂿}}
+  \unskip\def\fz{{\naefaes 𝃀}}
+  \unskip\def\fn{{\naefaes 𝃁}}
+  \unskip\def\fna{{\naefaes 𝃂}}
+  \unskip\def\fm{{\naefaes 𝃃}}
+  \unskip\def\mm{{\naefaes 𝃄}}
+  \unskip\def\fs{{\naefaes 𝃅}}
+  \unskip\def\fmk{{\naefaes 𝃆}}
+  \unskip\def\fnenano{{\naefaes 𝃇}}
+  \unskip\def\chrzygos{{\naefaes 𝃈}}
+  \unskip\def\chrkliton{{\naefaes 𝃉}}
+  \unskip\def\chrspathi{{\naefaes 𝃊}}
+  \unskip\def\fen{{\naefaes 𝃋}}
+  \unskip\def\fenantifonia{{\naefaes 𝃌}}
   \unskip\def\omalonapo{𝃍}
   \unskip\def\omalonol{𝃎}
   \unskip\def\omalonkn{𝃏}
-  \unskip\def\d{{\nruh 𝃐}}
-  \unskip\def\dd{{\nruh 𝃑}}
-  \unskip\def\ddd{{\nruh 𝃒}}
-  \unskip\def\dddd{{\nruh 𝃓}}
-  \unskip\def\y{{\nruh 𝃔}}
-  \unskip\def\yy{{\nruh 𝃕}}
-  \unskip\def\yyy{{\nruh 𝃖}}
-  \unskip\def\yyyy{{\nruh 𝃗}}
-  \unskip\def\genikidiesis{{\nruh 𝃘}}
-  \unskip\def\genikiyfesis{{\nruh 𝃙}}
-  \unskip\def\diastolimikri{{\nruh 𝃚}}
-  \unskip\def\diastoli{{\nruh 𝃛}}
-  \unskip\def\diastolidipli{{\nruh 𝃜}}
-  \unskip\def\diastolitheseos{{\nruh 𝃝}}
-  \unskip\def\ism{{\nruh𝃞}}
-  \unskip\def\isd{{\nruh𝃟}}
-  \unskip\def\isk{{\nruh𝃠}}
-  \unskip\def\isz{{\nruh𝃡}}
-  \unskip\def\isn{{\nruh𝃢}}
-  \unskip\def\isp{{\nruh𝃣}}
-  \unskip\def\isB{{\nruh𝃤}}
-  \unskip\def\isG{{\nruh𝃥}}
-  \unskip\def\isD{{\nruh𝃦}}
-  \unskip\def\isK{{\nruh𝃧}}
-  \unskip\def\isZ{{\nruh𝃨}}
-  \unskip\def\apa{{\nruh 𝃩}}
-  \unskip\def\avu{{\nruh 𝃪}}
-  \unskip\def\aga{{\nruh 𝃫}}
-  \unskip\def\adi{{\nruh 𝃬}}
-  \unskip\def\ake{{\nruh 𝃭}}
-  \unskip\def\azo{{\nruh 𝃮}}
-  \unskip\def\ani{{\nruh 𝃯}}
+  \unskip\def\d{{\naefaes 𝃐}}
+  \unskip\def\dd{{\naefaes 𝃑}}
+  \unskip\def\ddd{{\naefaes 𝃒}}
+  \unskip\def\dddd{{\naefaes 𝃓}}
+  \unskip\def\y{{\naefaes 𝃔}}
+  \unskip\def\yy{{\naefaes 𝃕}}
+  \unskip\def\yyy{{\naefaes 𝃖}}
+  \unskip\def\yyyy{{\naefaes 𝃗}}
+  \unskip\def\genikidiesis{{\naefaes 𝃘}}
+  \unskip\def\genikiyfesis{{\naefaes 𝃙}}
+  \unskip\def\diastolimikri{{\naefaes 𝃚}}
+  \unskip\def\diastoli{{\naefaes 𝃛}}
+  \unskip\def\diastolidipli{{\naefaes 𝃜}}
+  \unskip\def\diastolitheseos{{\naefaes 𝃝}}
+  \unskip\def\ism{{\IsokratimaHook𝃞}}
+  \unskip\def\isd{{\IsokratimaHook𝃟}}
+  \unskip\def\isk{{\IsokratimaHook𝃠}}
+  \unskip\def\isz{{\IsokratimaHook𝃡}}
+  \unskip\def\isn{{\IsokratimaHook𝃢}}
+  \unskip\def\isp{{\IsokratimaHook𝃣}}
+  \unskip\def\isB{{\IsokratimaHook𝃤}}
+  \unskip\def\isG{{\IsokratimaHook𝃥}}
+  \unskip\def\isD{{\IsokratimaHook𝃦}}
+  \unskip\def\isK{{\IsokratimaHook𝃧}}
+  \unskip\def\isZ{{\IsokratimaHook𝃨}}
+  \unskip\def\apa{{\naefaes 𝃩}}
+  \unskip\def\avu{{\naefaes 𝃪}}
+  \unskip\def\aga{{\naefaes 𝃫}}
+  \unskip\def\adi{{\naefaes 𝃬}}
+  \unskip\def\ake{{\naefaes 𝃭}}
+  \unskip\def\azo{{\naefaes 𝃮}}
+  \unskip\def\ani{{\naefaes 𝃯}}
   \unskip\def\knta{𝃰}
   \unskip\def\kn{𝃱}
   \unskip\def\kntakato{𝃲}
@@ -351,7 +341,7 @@
 
 %% Lua-side code
 \begin{luacode}
-function sometexttocommand ( line )
+function NeumeParseUnicode ( line )
     line = string.gsub ( line , "𝂏", "\\gorgon" )
     line = string.gsub ( line , "𝂐", "\\gorgonparestigmenonaristera" )
     line = string.gsub ( line , "𝂑", "\\gorgonparestigmenondexia" )
@@ -452,7 +442,7 @@ end
 \newenvironment{NeumeParseUnicode}{%
    \directlua{luatexbase.add_to_callback(
               "process_input_buffer",
-              sometexttocommand, "sometexttocommand")}}{%
+              NeumeParseUnicode, "NeumeParseUnicode")}}{%
    \directlua{luatexbase.remove_from_callback(
               "process_input_buffer",
-              "sometexttocommand")}}
+              "NeumeParseUnicode")}}

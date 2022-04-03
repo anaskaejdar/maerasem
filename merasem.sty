@@ -1,15 +1,9 @@
-% Áelou! Káevarju dúing?  This is my first package ever and if it is
-% beneficial to you, then I am very happy, my frjénding.
 %
-% (c) Anastázius Kaejatí Darián
+% (c) Zachari Khayati Darian
 %
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{kedmaetan}
-\RequirePackage{setspace,needspace,lettrine,changepage,ifthen}
-
-\@ifpackageloaded{xcolor}{\providecommand\ruh{\color{red}}}{}
-\@ifpackageloaded{luacolor}{\providecommand\ruh{\color{red}}}{}
-\providecommand\ruh{}
+\ProvidesPackage{merasem}
+\RequirePackage{setspace,needspace,lettrine,changepage,ifthen,merasem-common}
 
 \@ifpackageloaded{ekdosis}{
   \newenvironment{cleanalignment}{
@@ -35,49 +29,20 @@
   }
 }{}
 
-\@ifpackageloaded{fancyhdr}{
-  \pagestyle{fancy}
-  \fancyhf{}
-  \fancyhead[LE,RO]{\thepage}
-  \renewcommand{\headrule}{
-    \vspace{-2ex}
-    \hbox to\headwidth{
-      \ruh\leaders\hrule height \headrulewidth\hfill
-    }
-  }
-}{}
-
-\@ifpackageloaded{psaltiki}{
+\@ifpackageloaded{merasem-avaz}{
   \providecommand\mart[1]{\vbox to 0.7\baselineskip{\vfil\hbox to 1.0em{
     \unskip\let\NeumeFontScaleFactor\NeumeFontScaleFactorInline\NeumeAutoResize
     \unskip\centering
     \unskip\ruh\neume\hspace{0.1em} #1 %TODO: Get rid of magic number
   \unskip}\vfil}}\ignorespaces
 }{}
-\providecommand\nhelper[1]{{\ruh #1}}
-\providecommand\schelper[1]{\nhelper{\scshape #1}}
-\providecommand\ithelper[1]{\nhelper{\itshape #1}}
-\providecommand\bfhelper[1]{\nhelper{\bfseries #1}}
-\providecommand\schelperlower[1]{\schelper{\MakeLowercase{#1}}}
-\providecommand\helper[1]{\schelperlower{#1}}
-\providecommand\respond[1]{{\setlength\parindent{0.5\parindent}\ \\\indent\indent\helper{ #1: }\indent}}
-\providecommand\again[1][2]{\helper{\normalfont(#1x)}}
-\providecommand\decree[1]{{
-  \setstretch{0.6}
-  \centering\helper{#1}\par
-}}
 
 \providecommand\heirmos[1]{\footnotesize(Heirmos: \emph{#1})}
 \providecommand\automelon[1]{\footnotesize(Automelon: \emph{#1})}
-\def\takefirstletter #1#2 {
-  \ifcat\noexpand\relax\noexpand#1\def\next{#1{#2}\takefirstletter}\else
-  \def\next{\takefirstlettercommand{#1}{#2}}\fi
-  \next
-}
+\providecommand\dropacommand[2]{\noindent{\bfseries\ruh #1}{\scshape #2}{ }}
 \providecommand\dropbcommand[2]{
   \unskip\Needspace{2.8\baselineskip}
   \unskip\lettrine{\ruh #1}{#2}{ }}
-\providecommand\dropacommand[2]{\noindent{\scshape\bfseries\ruh #1}{\scshape #2}{ }}
 \providecommand\dropccommand[2]{
   \unskip\Needspace{3.8\baselineskip}
   \unskip\let\LettrineFontHook\dropcfont\lettrine[lines=3]{\ruh #1}{#2}{ }}
