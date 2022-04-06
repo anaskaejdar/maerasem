@@ -2,8 +2,8 @@
 % (c) Zachari Khayati Darian
 %
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{merasem-avaz}
-\RequirePackage{fontspec,setspace,stackengine,varwidth,luacode,luatexbase,merasem-common}
+\ProvidesPackage{marasem-avaz}
+\RequirePackage{fontspec,setspace,stackengine,varwidth,luacode,luatexbase,marasem-common}
 
 \providecommand\defaulthxostext{Ἦχος}
 \providecommand\hxosfonthook{\greekfont}
@@ -46,14 +46,15 @@
 \providecommand\dropfont{}
 \providecommand\neumedropcommand[1]{{\leavevmode
   \unskip\NeumeAutoResize
-  \unskip\dropfont\scshape\ruh\fontsize{\DropcapScaleFactor\tmpFontSize}
+  \unskip\dropfont\ruh\fontsize{\DropcapScaleFactor\tmpFontSize}
   {\DropcapScaleFactor\tmpFontSize}\selectfont\ignorespaces #1 \unskip\hspace{-\NeumeAlignment}\ignorespaces
 }}
 \providecommand\dropmpair[2][]{{\leavevmode
   \unskip\storefirstletter #1
   \unskip\neumedropcommand{\firstletter}
-  \unskip\musicpair[\scshape\firstletterremainder]{\ignorespaces #2 \unskip}\ignorespaces
+  \unskip\musicpair[\DropWordHook\firstletterremainder]{\ignorespaces #2 \unskip}\ignorespaces
 }}
+\providecommand\DropWordHook{}
 \providecommand\ULmuspair[2][]{\musicpair[#1\_]{#2}}
 \newfontface\NeumeFont{SERAFIM+} % https://psaltiki.info
 \newlength\tmpFontSize

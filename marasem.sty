@@ -2,8 +2,8 @@
 % (c) Zachari Khayati Darian
 %
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{merasem}
-\RequirePackage{setspace,needspace,lettrine,changepage,ifthen,merasem-common}
+\ProvidesPackage{marasem}
+\RequirePackage{setspace,needspace,lettrine,changepage,ifthen,marasem-common}
 
 \@ifpackageloaded{ekdosis}{
   \newenvironment{cleanalignment}{
@@ -29,7 +29,7 @@
   }
 }{}
 
-\@ifpackageloaded{merasem-avaz}{
+\@ifpackageloaded{marasem-avaz}{
   \providecommand\mart[1]{\vbox to 0.7\baselineskip{\vfil\hbox to 1.0em{
     \unskip\let\NeumeFontScaleFactor\NeumeFontScaleFactorInline\NeumeAutoResize
     \unskip\centering
