@@ -2,24 +2,22 @@
 % (c) Zachari Khayati Darian
 %
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{marasem-avaz}
-\RequirePackage{fontspec,setspace,stackengine,varwidth,luacode,luatexbase,marasem-common}
+\ProvidesPackage{maerasem-avaz}
+\RequirePackage{fontspec,setspace,stackengine,varwidth,luacode,luatexbase,maerasem-common}
 
-\providecommand\defaulthxostext{Ἦχος}
-\providecommand\hxosfonthook{\greekfont}
-\providecommand\texthxos[4][\defaulthxostext]{{
-  \unskip\let\naefaes\empty\ruh
-  \unskip\let\NeumeFontScaleFactor\NeumeFontScaleFactorHxos\NeumeAutoResize
-  {\hxosfonthook #1 }
-  {\neume #2}
-  {\hxosfonthook #3 }
-  {\neume #4 }
+\providecommand\DefaultHxosText{Ἦχος}
+\providecommand\HxosTextHook{\greekfont}
+\providecommand\hxos[4][\DefaultHxosText]{{\ignorespaces
+  \let\naefaes\empty\ruh\ignorespaces
+  \let\NeumeFontScaleFactor\NeumeFontScaleFactorHxos\NeumeAutoResize\ignorespaces
+  {\HxosTextHook\ignorespaces #1}{ }
+  {\neume\ignorespaces #2}{ }
+  {\HxosTextHook\ignorespaces #3}{ }
+  {\neume\ignorespaces #4}\ignorespaces
 }}
-\providecommand\hxos[4][\defaulthxostext]{{\let\helper\empty\decree{\texthxos[#1]{#2}{#3}{#4}}}}
-\providecommand\smallhxos[4][\defaulthxostext]{{
+\providecommand\smallhxos[4][\DefaultHxosText]{{
   \setlength\parskip{0.5\parskip}
-  \setstretch{0.6}
-  \hxos[#1]{#2}{#3}{#4}
+  \let\helper\nhelper\decree{\hxos[#1]{#2}{#3}{#4}}
 }}
 \newlength\NeumeAlignment
 \newlength\NeumePadding
@@ -33,21 +31,21 @@
 \providecommand\NeumePaddingScaleFactor{0}
 \providecommand\NeumeTextPaddingScaleFactor{0}
 \providecommand\NeumeComboPaddingScaleFactor{0}
-\providecommand\DropcapScaleFactor{5.5}
+\providecommand\NeumeDropcapScaleFactor{5.5}
 \providecommand\NeumeAutoResize{
-  \unskip\setlength\tmpFontSize{\f@size pt}
-  \unskip\setlength\NeumeFontSize    {\NeumeFontScaleFactor\tmpFontSize}
-  \unskip\setlength\NeumeAlignment   {\NeumeAlignmentScaleFactor\tmpFontSize}
-  \unskip\setlength\NeumePadding     {\NeumePaddingScaleFactor\tmpFontSize}
-  \unskip\setlength\NeumeTextPadding {\NeumeTextPaddingScaleFactor\tmpFontSize}
-  \unskip\setlength\NeumeComboPadding{\NeumeComboPaddingScaleFactor\tmpFontSize}
+  \unskip\maerasem@capturecurrentfontsize
+  \unskip\setlength\NeumeFontSize    {\NeumeFontScaleFactor\maerasem@currfontsize}
+  \unskip\setlength\NeumeAlignment   {\NeumeAlignmentScaleFactor\maerasem@currfontsize}
+  \unskip\setlength\NeumePadding     {\NeumePaddingScaleFactor\maerasem@currfontsize}
+  \unskip\setlength\NeumeTextPadding {\NeumeTextPaddingScaleFactor\maerasem@currfontsize}
+  \unskip\setlength\NeumeComboPadding{\NeumeComboPaddingScaleFactor\maerasem@currfontsize}
   \unskip\ignorespaces
 }
-\providecommand\dropfont{}
+\providecommand\NeumeDropFontHook{}
 \providecommand\neumedropcommand[1]{{\leavevmode
   \unskip\NeumeAutoResize
-  \unskip\dropfont\ruh\fontsize{\DropcapScaleFactor\tmpFontSize}
-  {\DropcapScaleFactor\tmpFontSize}\selectfont\ignorespaces #1 \unskip\hspace{-\NeumeAlignment}\ignorespaces
+  \unskip\ruh\NeumeDropFontHook\fontsize{\NeumeDropcapScaleFactor\maerasem@currfontsize}
+  {\NeumeDropcapScaleFactor\maerasem@currfontsize}\selectfont\ignorespaces #1 \unskip\hspace{-\NeumeAlignment}\ignorespaces
 }}
 \providecommand\dropmpair[2][]{{\leavevmode
   \unskip\storefirstletter #1
@@ -57,7 +55,6 @@
 \providecommand\DropWordHook{}
 \providecommand\ULmuspair[2][]{\musicpair[#1\_]{#2}}
 \newfontface\NeumeFont{SERAFIM+} % https://psaltiki.info
-\newlength\tmpFontSize
 \newlength\NeumeFontSize
 \newlength\tmpStackFontSize
 \NeumeAutoResize

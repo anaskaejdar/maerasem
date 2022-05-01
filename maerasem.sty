@@ -2,8 +2,8 @@
 % (c) Zachari Khayati Darian
 %
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{marasem}
-\RequirePackage{setspace,needspace,lettrine,changepage,ifthen,marasem-common}
+\ProvidesPackage{maerasem}
+\RequirePackage{setspace,needspace,lettrine,changepage,ifthen,maerasem-common}
 
 \@ifpackageloaded{ekdosis}{
   \newenvironment{cleanalignment}{
@@ -29,7 +29,7 @@
   }
 }{}
 
-\@ifpackageloaded{marasem-avaz}{
+\@ifpackageloaded{maerasem-avaz}{
   \providecommand\mart[1]{\vbox to 0.7\baselineskip{\vfil\hbox to 1.0em{
     \unskip\let\NeumeFontScaleFactor\NeumeFontScaleFactorInline\NeumeAutoResize
     \unskip\centering
@@ -39,25 +39,38 @@
 
 \providecommand\heirmos[1]{\footnotesize(Heirmos: \emph{#1})}
 \providecommand\automelon[1]{\footnotesize(Automelon: \emph{#1})}
-\providecommand\dropacommand[2]{\noindent{\bfseries\ruh #1}{\scshape #2}{ }}
-\providecommand\dropbcommand[2]{
+\providecommand\DropAFontHook{}
+\providecommand\DropBFontHook{}
+\providecommand\DropCFontHook{}
+\providecommand\DropDFontHook{}
+\providecommand\SmallDropFontHook{}
+\providecommand\smalldropbommand[2]{\noindent{\bfseries\ruh\DropAFontHook #1}{\scshape #2}{ }}
+\providecommand\dropacommand[3][2]{
   \unskip\Needspace{2.8\baselineskip}
-  \unskip\lettrine{\ruh #1}{#2}{ }}
-\providecommand\dropccommand[2]{
+  \unskip\let\LettrineFontHook\DropBFontHook\lettrine[lines=#1]{\ruh #2}{#3}{ }}
+\providecommand\dropbcommand[3][3]{
   \unskip\Needspace{3.8\baselineskip}
-  \unskip\let\LettrineFontHook\dropcfont\lettrine[lines=3]{\ruh #1}{#2}{ }}
-\providecommand\dropdcommand[2]{
+  \unskip\let\LettrineFontHook\DropCFontHook\lettrine[lines=#1]{\ruh #2}{#3}{ }}
+\providecommand\dropccommand[3][4]{
   \unskip\Needspace{4.8\baselineskip}
-  \unskip\let\LettrineFontHook\dropdfont\lettrine[lines=4]{\ruh #1}{#2}{ }}
-\providecommand\dropecommand[2]{
+  \unskip\let\LettrineFontHook\DropDFontHook\lettrine[lines=#1]{\ruh #2}{#3}{ }}
+\providecommand\dropdcommand[3][5]{
   \unskip\Needspace{5.8\baselineskip}
-  \unskip\let\LettrineFontHook\dropefont\lettrine[lines=5]{\ruh #1}{#2}{ }}
-\providecommand\dropa{\let\takefirstlettercommand\dropacommand\takefirstletter}
-\providecommand\dropb{\let\takefirstlettercommand\dropbcommand\takefirstletter}
-\providecommand\dropc{\let\takefirstlettercommand\dropccommand\takefirstletter}
-\providecommand\dropd{\let\takefirstlettercommand\dropdcommand\takefirstletter}
-\providecommand\drope{\let\takefirstlettercommand\dropecommand\takefirstletter}
-\let\drop\dropb
+  \unskip\let\LettrineFontHook\DropEFontHook\lettrine[lines=#1]{\ruh #2}{#3}{ }}
+\providecommand\smalldrop{\let\takefirstlettercommand\smalldropbommand\takefirstletter}
+\providecommand\dropa[1][2]{
+	\renewcommand\takefirstlettercommand[2]{\dropacommand[#1]{##1}{##2}}\takefirstletter
+}
+\providecommand\dropb[1][3]{
+	\renewcommand\takefirstlettercommand[2]{\dropbcommand[#1]{##1}{##2}}\takefirstletter
+}
+\providecommand\dropc[1][4]{
+	\renewcommand\takefirstlettercommand[2]{\dropccommand[#1]{##1}{##2}}\takefirstletter
+}
+\providecommand\dropd[1][5]{
+	\renewcommand\takefirstlettercommand[2]{\dropdcommand[#1]{##1}{##2}}\takefirstletter
+}
+\let\drop\dropa
 \newenvironment{haemsaefhe}{
   \noindent\begin{minipage}{\textwidth}
   }{

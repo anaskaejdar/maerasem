@@ -1,0 +1,61 @@
+%
+% (c) Zachari Khayati Darian
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{maerasem-common}
+\RequirePackage{}
+
+\newlength\maerasem@currfontsize
+
+\providecommand\definemycolors{\definecolor{cmykred}{cmyk}{0,1,1,0}}
+\@ifpackageloaded{luacolor}{
+  \definemycolors
+  \providecommand\naefaes{\color{cmykred}}
+  \providecommand\ruh{\color{cmykred}}
+}{
+  \@ifpackageloaded{xcolor}{
+    \definemycolors
+    \providecommand\ruh{\color{cmykred}}
+  }{}
+}
+\providecommand\ruh{}\providecommand\naefaes{}
+
+\providecommand\takefirstlettercommand[2]{}
+\def\takefirstletter #1#2 {
+  \unskip\ifcat\noexpand\relax\noexpand#1\def\next{#1{#2}\takefirstletter}\else
+  \unskip\def\next{\takefirstlettercommand{#1}{#2}}\fi
+  \unskip\next
+}
+\providecommand\storefirstletter{
+  \unskip\renewcommand\takefirstlettercommand[2]{
+    \unskip\def\firstletter{##1}\def\firstletterremainder{##2}\ignorespaces
+  }
+  \unskip\takefirstletter
+}
+
+\providecommand\maerasem@capturecurrentfontsize{\setlength\maerasem@currfontsize{\f@size pt}}
+\providecommand\nhelperstack[1]{{\ruh #1}}
+\providecommand\nhelpernostack[1]{{\addfontfeatures{RawFeature={-c2sc,-smcp}}\ruh #1}}
+\providecommand\nhelper[1]{\nhelperstack{#1}}
+\providecommand\ithelper[1]{\nhelper{\itshape #1}}
+\providecommand\bfhelper[1]{\nhelper{\bfseries #1}}
+\providecommand\smcphelper[1]{\nhelper{\scshape #1}}
+\providecommand\alschelper[1]{\smcphelper{\MakeLowercase{#1}}}
+\providecommand\ctschelper[1]{\smcphelper{
+  \unskip\ignorespaces
+  \addfontfeatures{SmallCapsFeatures={Letters={UppercaseSmallCaps}}} #1
+  \unskip\ignorespaces
+}}
+\providecommand\upctschelper[1]{\nhelper{\addfontfeatures{Letters={UppercaseSmallCaps,SmallCaps}} #1}}
+\providecommand\schelper[1]{\smcphelper{#1}}
+\providecommand\helper[1]{\schelper{#1}}
+\providecommand\respond[1]{{
+  \unskip\ignorespaces
+  \setlength\parindent{0.5\parindent}\ \\\indent\indent\helper{ #1: }\indent
+  \unskip\ignorespaces
+}}
+\providecommand\again[1][2]{\nhelper{(}\ithelper{#1x}\nhelper{)}}
+\providecommand\decree[1]{{
+  \setstretch{0.8}
+  \centering\helper{#1}\par
+}}
